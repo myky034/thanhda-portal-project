@@ -1,0 +1,103 @@
+/* Colors and Fonts */
+:root {
+  /* Fonts and Typography */
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: 0.983rem;
+  --smallFontSize: 0.813rem;
+  --smallestFontSize: 0.75rem;
+}
+
+.side-nav-container {
+  background-color: #fff;
+  width: 200px;
+  height: 160vh;
+  position: relative;
+  padding: 1rem 1rem;
+  color: #a6b9cf;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  top: 0;
+  left: 0;
+
+  transition: 0.4s;
+
+  .side-upper {
+    display: grid;
+
+    .side-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .side-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--h2FontSize);
+        color: #6b819e;
+      }
+
+      .bugerContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .hambuger {
+          position: absolute;
+          right: 0;
+          background: none;
+          border: none;
+          cursor: pointer;
+          margin: auto;
+          border-radius: 5px;
+          height: 50px;
+          width: 50px;
+
+          &:hover .icon {
+            color: #1479ff;
+            transition: 0.4s;
+          }
+        }
+      }
+    }
+
+    .side-content-container {
+      margin: 3rem 0 0 0;
+
+      .side-link {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        padding: 8px 0px 8px 16px;
+        height: 30px;
+        margin: 8px 0;
+        border-radius: 4px;
+        transition: all 0.3s;
+
+        a {
+          width: 95%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        .title-link {
+          color: #6b819e;
+          font-size: 18px;
+          font-weight: 500;
+          align-items: center;
+          margin: 0 20px;
+          width: 100%;
+          height: 30px;
+        }
+
+        &:hover {
+          background-color: #1479ff;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
