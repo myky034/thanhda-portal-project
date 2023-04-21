@@ -1,10 +1,11 @@
 import React from 'react';
-import './Students.scss';
-import Sidebar from "../../../components/SideBar/Sidebar";
+import './DashBoard.scss';
+import Sidebar from '../../../components/SideBar/Sidebar';
 import { Box, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
+import WelcomeBox from './../../../components/WelcomeBox/WelcomeBox';
 
-const Students = () => {
+const Dashboard = () => {
 
   const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -16,14 +17,14 @@ const Students = () => {
   }));
 
   return (
-    <Box className="dashboard-box" component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <DrawerHeader className="drawer-header" />
-      <div style={{ display: "flex" }}>
+    <Box className='dashboard-box' component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <DrawerHeader className='drawer-header'/>
+      <div style={{display: "flex"}}>
         <Sidebar />
-        <h1>Student</h1>
+        <WelcomeBox />
       </div>
     </Box>
   );
 }
 
-export default Students
+export default Dashboard
