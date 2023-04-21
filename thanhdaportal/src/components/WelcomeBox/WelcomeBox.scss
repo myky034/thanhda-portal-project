@@ -1,0 +1,57 @@
+.welcome-box {
+  height: 290px;
+  width: 70%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  position: relative;
+
+  .welcome-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    .container-quotes {
+      height: 100%;
+      width: 100%;
+      padding: 2rem;
+      display: grid;
+      justify-content: center;
+
+      .welcome-text {
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+
+      .welcome-quotes {
+        height: 100%;
+        width: 90%;
+
+        .content-quotes{
+            p{
+                font-size: 18 px;
+                font-weight: 500;
+                word-wrap: break-word;
+                flex-wrap: wrap;
+            }
+        }
+
+        .quotes-source{
+            margin-top: 15px;
+            p{
+                font-size: 15px;
+                font-weight: 500;
+                text-align: end;
+            }
+        }
+      }
+    }
+
+    .welcome-images {
+      img {
+        height: 200px;
+      }
+    }
+  }
+}
