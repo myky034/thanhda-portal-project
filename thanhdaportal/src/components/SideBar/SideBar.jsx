@@ -25,6 +25,7 @@ import {
   FaChartPie,
   FaCog,
 } from "react-icons/fa";
+import { IoMailUnreadOutline, IoMailOutline } from "react-icons/io5";
 import SearchBar from "./Search/SearchBar";
 
 const drawerWidth = 240;
@@ -112,7 +113,7 @@ const Sidebar = () => {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar className="appbar-sidebar" position="fixed" open={open}>
-          <Toolbar>
+          <Toolbar className="appbar-toolbar">
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -122,10 +123,11 @@ const Sidebar = () => {
                 marginRight: 5,
                 ...(open && { display: "none" }),
               }}
+              className="appbar-icon-button"
             >
-              <FiMenu />
+              <FiMenu className="appbar-icon-hambuger" />
             </IconButton>
-            <SearchBar style={{justifyContent: "flex-end"}}/>
+            <SearchBar style={{ justifyContent: "flex-end" }} />
           </Toolbar>
         </AppBar>
         <Drawer className="drawer-header" variant="permanent" open={open}>
@@ -150,6 +152,7 @@ const Sidebar = () => {
                 onClick={() => {
                   navigate("/dashboard");
                 }}
+                className="sidebar-link-item"
               >
                 <ListItemButton
                   sx={{
@@ -157,6 +160,7 @@ const Sidebar = () => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className="sidebar-item-button"
                 >
                   <ListItemIcon
                     sx={{
@@ -164,8 +168,9 @@ const Sidebar = () => {
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
                     }}
+                    className="sidebar-item-icon"
                   >
-                    <HiHome />
+                    <HiHome className="icons" />
                   </ListItemIcon>
                   <ListItemText
                     className="sidebar-link sidebar-text"
@@ -183,6 +188,7 @@ const Sidebar = () => {
                 onClick={() => {
                   navigate("/student");
                 }}
+                className="sidebar-link-item"
               >
                 <ListItemButton
                   sx={{
@@ -190,6 +196,7 @@ const Sidebar = () => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className="sidebar-item-button"
                 >
                   <ListItemIcon
                     sx={{
@@ -197,8 +204,9 @@ const Sidebar = () => {
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
                     }}
+                    className="sidebar-item-icon"
                   >
-                    <FaUserGraduate />
+                    <FaUserGraduate className="icons" />
                   </ListItemIcon>
                   <ListItemText
                     className="sidebar-link sidebar-text"
@@ -216,6 +224,7 @@ const Sidebar = () => {
                 onClick={() => {
                   navigate("/parent");
                 }}
+                className="sidebar-link-item"
               >
                 <ListItemButton
                   sx={{
@@ -223,6 +232,7 @@ const Sidebar = () => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className="sidebar-item-button"
                 >
                   <ListItemIcon
                     sx={{
@@ -230,8 +240,9 @@ const Sidebar = () => {
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
                     }}
+                    className="sidebar-item-icon"
                   >
-                    <FaUserFriends />
+                    <FaUserFriends className="icons" />
                   </ListItemIcon>
                   <ListItemText
                     className="sidebar-link sidebar-text"
@@ -249,6 +260,7 @@ const Sidebar = () => {
                 onClick={() => {
                   navigate("/teacher");
                 }}
+                className="sidebar-link-item"
               >
                 <ListItemButton
                   sx={{
@@ -256,6 +268,7 @@ const Sidebar = () => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className="sidebar-item-button"
                 >
                   <ListItemIcon
                     sx={{
@@ -263,8 +276,9 @@ const Sidebar = () => {
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
                     }}
+                    className="sidebar-item-icon"
                   >
-                    <FaUserTie />
+                    <FaUserTie className="icons" />
                   </ListItemIcon>
                   <ListItemText
                     className="sidebar-link sidebar-text"
@@ -282,6 +296,7 @@ const Sidebar = () => {
                 onClick={() => {
                   navigate("/statistic");
                 }}
+                className="sidebar-link-item"
               >
                 <ListItemButton
                   sx={{
@@ -289,6 +304,7 @@ const Sidebar = () => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className="sidebar-item-button"
                 >
                   <ListItemIcon
                     sx={{
@@ -296,8 +312,9 @@ const Sidebar = () => {
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
                     }}
+                    className="sidebar-item-icon"
                   >
-                    <FaChartPie />
+                    <FaChartPie className="icons" />
                   </ListItemIcon>
                   <ListItemText
                     className="sidebar-link sidebar-text"
@@ -315,6 +332,7 @@ const Sidebar = () => {
                 onClick={() => {
                   navigate("/setting");
                 }}
+                className="sidebar-link-item"
               >
                 <ListItemButton
                   sx={{
@@ -322,6 +340,7 @@ const Sidebar = () => {
                     justifyContent: open ? "initial" : "center",
                     px: 2.5,
                   }}
+                  className="sidebar-item-button"
                 >
                   <ListItemIcon
                     sx={{
@@ -329,8 +348,9 @@ const Sidebar = () => {
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
                     }}
+                    className="sidebar-item-icon"
                   >
-                    <FaCog />
+                    <FaCog className="icons" />
                   </ListItemIcon>
                   <ListItemText
                     className="sidebar-link sidebar-text"

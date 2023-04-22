@@ -13,9 +13,23 @@
 .appbar-sidebar {
   height: 48px;
   justify-content: center;
+  background-color: #fff !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+
+  .appbar-toolbar {
+    .appbar-icon-button {
+      .appbar-icon-hambuger {
+        color: #193b68;
+      }
+    }
+  }
 }
 
 .drawer-header {
+  .MuiPaper-root {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
   .drawer-header-sidebar {
     min-height: 48px;
   }
@@ -25,10 +39,26 @@
       text-decoration: none;
       color: rgba(0, 0, 0, 0.54);
 
-      .sidebar-text {
-        span {
-          font-family: "Quicksand", sans-serif;
-          font-weight: 600;
+      .sidebar-link-item {
+        .sidebar-item-button {
+          align-items: center;
+          justify-content: center;
+          margin: 7px;
+          border-radius: 5px;
+
+          .sidebar-item-icon {
+            .icons {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+
+        .sidebar-text {
+          span {
+            font-family: "Quicksand", sans-serif;
+            font-weight: 600;
+          }
         }
       }
     }
