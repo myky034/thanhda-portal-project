@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import ListStudents from './../../views/admin/Students/ListStudents/ListStudents';
 
 const TabBar = () => {
 
@@ -16,18 +17,24 @@ const TabBar = () => {
 
   return (
     <div>
-      <Box sx={{ width: "100%", typography: "body1" }}>
-        <TabContext value={value}>
+      <Box sx={{ width: "100%", typography: "body1" }} className="tab-students">
+        <TabContext value={value} className="tab-context-student">
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab label="Item One" value="1" />
-              <Tab label="Item Two" value="2" />
-              <Tab label="Item Three" value="3" />
+            <TabList onChange={handleChange} aria-label="lab API tabs example" className='tab-list'>
+              <Tab label="Danh Sách" value="1" className='tab-button-header' />
+              <Tab label="Điểm Danh" value="2" className='tab-button-header' />
+              <Tab label="Học Tập" value="3" className='tab-button-header' />
+              <Tab label="Kỷ Luật" value="4" className='tab-button-header' />
+              <Tab label="Tổng Kết" value="5" className='tab-button-header' />
             </TabList>
           </Box>
-          <TabPanel value="1">Item One</TabPanel>
-          <TabPanel value="2">Item Two</TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          <TabPanel value="1" className='tab-item-content'>
+            <ListStudents />
+          </TabPanel>
+          <TabPanel value="2" className='tab-item-content'>Item Two</TabPanel>
+          <TabPanel value="3" className='tab-item-content'>Item Three</TabPanel>
+          <TabPanel value="4" className='tab-item-content'>Item Three</TabPanel>
+          <TabPanel value="5" className='tab-item-content'>Item Three</TabPanel>
         </TabContext>
       </Box>
     </div>

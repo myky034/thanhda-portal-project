@@ -7,6 +7,7 @@ import Parents from './views/admin/Parents/Parents';
 import Teachers from './views/admin/Teachers/Teachers';
 import Statistics from './views/admin/Statistics/Statistics';
 import Settings from './views/admin/Settings/Settings';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
