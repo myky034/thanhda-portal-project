@@ -1,17 +1,48 @@
-.dashboard-box {
+.students-box {
   height: 160vh;
   width: 100%;
   position: relative;
 
-  .container-content{
+  .container-content {
     height: 100%;
     overflow: hidden;
 
-    .student-contents{
-        width: 100%;
-        position: relative;
-        left: 5%;
-        top: 20%;
+    .student-contents {
+      width: 100%;
+      position: relative;
+      left: 5%;
+      top: 5%;
+
+      .header-student-page {
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .header-button-action {
+          display: flex;
+          margin-right: 5%;
+
+          .dropdown-semester{
+            margin: 0 10px;
+          }
+
+          .doub-button{
+            margin: 0 10px 0px 0px;
+
+            .button-export{
+              margin: 0 10px 0px 0px;
+            }
+          }
+        }
+      }
+
+      .tab-bar-students {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 0.5rem;
+        margin-right: 5%;
+      }
     }
   }
 }
