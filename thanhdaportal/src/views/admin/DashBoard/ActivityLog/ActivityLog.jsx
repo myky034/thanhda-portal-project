@@ -7,30 +7,30 @@ const ActivityLog = () => {
   return (
     <div className="container-activity-log">
       <div className="activity-log-dashboard">
-        <div className="news-header">
-          <div className="news-title">
+        <div className="activity-header">
+          <div className="activity-title">
             <h3>Activity log</h3>
           </div>
-          <div className="news-see-all">
+          <div className="activity-see-all">
             <button>See all</button>
           </div>
         </div>
-        <div className="news-content">
+        <div className="activity-content">
           {ActivityLogData.map((item, index) => {
             return (
-              <Link className="news-link" to={item.to} key={index}>
-                <div className="news-list-item">
-                  <div className="news-icon">{item.icon}</div>
-                  <div className="news-list-content">
-                    <div className="news-list-header">
+              <Link className="activity-link" to={item.to} key={index}>
+                <div className="activity-list-item">
+                  <div className="activity-icon">{item.icon}</div>
+                  <div className="activity-list-content">
+                    <div className="activity-list-header">
                       {item.tag}
                       {item.title}
                     </div>
-                    <div className="news-list-subheader">
+                    <div className="activity-list-subheader">
                       {item.author}
                       {item.datetime}
                     </div>
-                    <div className="news-list-subcontent">{item.content}</div>
+                    <div className="activity-list-subcontent">{item.content}</div>
                   </div>
                 </div>
               </Link>

@@ -1,11 +1,11 @@
 import React from 'react';
 import './Students.scss';
-import Sidebar from "../../../components/SideBar/SideBar";
+import Sidebar from "../../../components/SideBar/Sidebar";
 import { Box, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
+import TabBar from "../../../components/TabBar/TabBar";
 
 const Students = () => {
-
   const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
@@ -16,14 +16,26 @@ const Students = () => {
   }));
 
   return (
-    <Box className="dashboard-box" component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <DrawerHeader className="drawer-header" />
+    <Box className="students-box" component="main" sx={{ flexGrow: 1, p: 3 }}>
       <div style={{ display: "flex" }}>
         <Sidebar />
-        <h1>Student</h1>
+      </div>
+
+      <div
+        className="container-content container-student"
+        style={{ display: "grid" }}
+      >
+        <div className="student-contents">
+          <div className="header-student-page">
+            <h1>Students</h1>
+          </div>
+          <div className="tab-bar-students">
+            <TabBar />
+          </div>
+        </div>
       </div>
     </Box>
   );
-}
+};
 
-export default Students
+export default Students;

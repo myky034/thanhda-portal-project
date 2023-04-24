@@ -11,18 +11,18 @@
     padding: 1rem;
     max-height: fit-content;
 
-    .news-header {
+    .activity-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
-      .news-title {
+      .activity-title {
         h3 {
           font-size: 25px;
         }
       }
 
-      .news-see-all {
+      .activity-see-all {
         button {
           border: none;
           outline: none;
@@ -42,14 +42,14 @@
       }
     }
 
-    .news-content {
+    .activity-content {
       margin-top: 20px;
 
-      .news-link {
+      .activity-link {
         text-decoration: none;
         color: grey;
 
-        .news-list-item {
+        .activity-list-item {
           display: flex;
           max-height: 100px;
           border-radius: 5px;
@@ -63,7 +63,7 @@
             transition: 0.5s all ease;
           }
 
-          .news-icon {
+          .activity-icon {
             height: 70px;
             width: 70px;
             margin-right: 10px;
@@ -77,13 +77,13 @@
             }
           }
 
-          .news-list-content {
+          .activity-list-content {
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 100%;
             max-height: 100px;
 
-            .news-list {
+            .activity-list {
               &-header,
               &-subheader,
               &-subcontent {
