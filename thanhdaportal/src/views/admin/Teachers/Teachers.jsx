@@ -1,8 +1,8 @@
 import React from 'react';
 import './Teachers.scss'
-import Sidebar from "../../../components/SideBar/SideBar";
-import { Box, Typography } from "@mui/material";
-import { styled, useTheme } from "@mui/material/styles";
+import Sidebar from "../../../components/SideBar/Sidebar";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const Teachers = () => {
 

@@ -1,19 +1,19 @@
 import React from "react";
 import "./Students.scss";
 import Sidebar from "../../../components/SideBar/Sidebar";
-import { Box, Typography } from "@mui/material";
-import { styled, useTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
+//import { styled } from "@mui/material/styles";
 import TabBar from "../../../components/TabBar/TabBar";
 
 const Students = () => {
-  const DrawerHeader = styled("div")(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-  }));
+  // const DrawerHeader = styled("div")(({ theme }) => ({
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "flex-end",
+  //   padding: theme.spacing(0, 1),
+  //   // necessary for content to be below app bar
+  //   ...theme.mixins.toolbar,
+  // }));
 
   return (
     <Box className="students-box" component="main" sx={{ flexGrow: 1, p: 3 }}>
