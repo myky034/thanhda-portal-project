@@ -1,5 +1,5 @@
-import React from 'react';
-import './Students.scss';
+import React from "react";
+import "./Students.scss";
 import Sidebar from "../../../components/SideBar/Sidebar";
 import { Box, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
