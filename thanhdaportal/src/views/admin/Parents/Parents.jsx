@@ -1,6 +1,6 @@
 import React from 'react';
 import './Parents.scss'
-import Sidebar from "../../../components/SideBar/Sidebar";
+import Sidebar from "../../../components/SideBar/SideBar";
 import { Box, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 

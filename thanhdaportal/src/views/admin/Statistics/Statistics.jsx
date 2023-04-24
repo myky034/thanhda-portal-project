@@ -1,11 +1,11 @@
 import React from 'react';
 import './Statistics.scss'
-import Sidebar from "../../../components/SideBar/Sidebar";
+import Sidebar from "../../../components/SideBar/SideBar";
 import { Box, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 
 const Statistics = () => {
-  
+
   const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",

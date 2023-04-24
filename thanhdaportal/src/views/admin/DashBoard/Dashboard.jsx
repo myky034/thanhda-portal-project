@@ -1,6 +1,6 @@
 import React from "react";
 import "./DashBoard.scss";
-import Sidebar from "../../../components/SideBar/Sidebar";
+import Sidebar from "../../../components/SideBar/SideBar";
 import { Box, Typography } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import WelcomeBox from "./../../../components/WelcomeBox/WelcomeBox";
@@ -23,27 +23,27 @@ const Dashboard = () => {
   return (
     <Box className="dashboard-box" component="main" sx={{ flexGrow: 1, p: 3 }}>
 
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+      </div>
+
+      <div
+        className="container-content container-dashboard"
+        style={{ display: "grid" }}
+      >
+
+        <div style={{ display: "flex", marginBottom: "1rem" }}>
+          <WelcomeBox />
+          <CalendarBox />
+        </div>
+
         <div style={{ display: "flex" }}>
-          <Sidebar />
+          <News />
+          <EventsBox />
+          <ActivityLog />
         </div>
 
-        <div
-          className="container-content container-dashboard"
-          style={{ display: "grid" }}
-        >
-
-          <div style={{ display: "flex", marginBottom: "1rem" }}>
-            <WelcomeBox />
-            <CalendarBox />
-          </div>
-
-          <div style={{ display: "flex" }}>
-            <News />
-            <EventsBox />
-            <ActivityLog />
-          </div>
-
-        </div>
+      </div>
 
     </Box>
   );
