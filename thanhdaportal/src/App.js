@@ -8,22 +8,25 @@ import Teachers from './views/admin/Teachers/Teachers';
 import Statistics from './views/admin/Statistics/Statistics';
 import Settings from './views/admin/Settings/Settings';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
-    //<div></div>
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/student" element={<Students />} />
-          <Route path="/parent" element={<Parents />} />
-          <Route path="/teacher" element={<Teachers />} />
-          <Route path="/statistic" element={<Statistics />} />
-          <Route path="/setting" element={<Settings />} />
-        </Routes>
-      </div>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/student" element={<Students />} />
+            <Route path="/parent" element={<Parents />} />
+            <Route path="/teacher" element={<Teachers />} />
+            <Route path="/statistic" element={<Statistics />} />
+            <Route path="/setting" element={<Settings />} />
+          </Routes>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 

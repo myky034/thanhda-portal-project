@@ -28,7 +28,7 @@ const TabBar = () => {
               <Tab label="Tổng Kết" value="5" className='tab-button-header' />
             </TabList>
           </Box>
-          <TabPanel value="1" className='tab-item-content'>
+          <TabPanel value="1" className='tab-item-content' style={{padding: "10px"}}>
             <ListStudents />
           </TabPanel>
           <TabPanel value="2" className='tab-item-content'>Item Two</TabPanel>
