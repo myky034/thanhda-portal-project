@@ -6,6 +6,11 @@ import { IoSquareOutline } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { FiTrash2, FiEdit } from "react-icons/fi";
 import { DataGrid } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import StudentDetail from "./StudentDetail/StudentDetail";
 
 const ListStudents = () => {
   // const [currentStudents, setCurrentStudents] = useState(null);
@@ -19,6 +24,10 @@ const ListStudents = () => {
   // useEffect(() => {
   //   dispatch(retrieveStudent());
   // }, [dispatch]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [isLoading, setisLoading] = useState(false);
   const [students, setStudents] = useState([]);
@@ -46,96 +55,96 @@ const ListStudents = () => {
 
   const handleDelete = (e, del) => {
     console.log("Clicked!");
-  }
+  };
 
-  const columns = [
-    {
-      field: "action",
-      headerName: "",
-      width: 50,
-      editable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <button className="button-icon" onClick={handleDelete}>
-              <IoIosEye className="icon" />
-            </button>
-          </>
-        );
-      },
-    },
-    { field: "holyName", headerName: "Tên Thánh", width: 100, editable: false },
-    {
-      field: "firstName",
-      headerName: "Tên Thánh",
-      width: 100,
-      editable: false,
-      hide: true,
-    },
-    {
-      field: "middleName",
-      headerName: "Tên Thánh",
-      width: 100,
-      editable: false,
-      hide: true,
-    },
-    {
-      field: "lastName",
-      headerName: "Tên Thánh",
-      width: 100,
-      editable: false,
-      hide: true,
-    },
-    {
-      field: "fullname",
-      headerName: "Họ Tên",
-      width: 150,
-      editable: false,
-      valueGetter: (params) =>
-        `${params.row.firstName || ""} ${params.row.middleName || ""} ${
-          params.row.lastName || ""
-        }`,
-    },
-    { field: "gender", headerName: "Giới Tính", width: 80, editable: false },
-    { field: "birthday", headerName: "Ngày Sinh", width: 110, editable: false },
-    {
-      field: "baptismDay",
-      headerName: "Ngày Rửa Tội",
-      width: 130,
-      editable: false,
-    },
-    {
-      field: "baptismPlace",
-      headerName: "Nơi Rửa Tội",
-      width: 100,
-      editable: false,
-    },
-    { field: "address", headerName: "Địa Chỉ", width: 160, editable: false },
-    { field: "oldClass", headerName: "Lớp Cũ", width: 130, editable: false },
-    { field: "newClass", headerName: "Lớp Mới", width: 130, editable: false },
-    {
-      field: "actions",
-      headerName: "",
-      width: 80,
-      editable: false,
-      renderCell: (params) => {
-        return (
-          <>
-            <button className="button-icon" onClick={handleEdit}>
-              <FiEdit className="icon" />
-            </button>
-            <button className="button-icon" onClick={handleDelete}>
-              <FiTrash2 className="icon" />
-            </button>
-          </>
-        );
-      },
-    },
-  ];
-  
+  // const columns = [
+  //   {
+  //     field: "action",
+  //     headerName: "",
+  //     width: 50,
+  //     editable: false,
+  //     renderCell: (params) => {
+  //       return (
+  //         <>
+  //           <button className="button-icon" onClick={handleDelete}>
+  //             <IoIosEye className="icon" />
+  //           </button>
+  //         </>
+  //       );
+  //     },
+  //   },
+  //   { field: "holyName", headerName: "Tên Thánh", width: 100, editable: false },
+  //   {
+  //     field: "firstName",
+  //     headerName: "Tên Thánh",
+  //     width: 100,
+  //     editable: false,
+  //     hide: true,
+  //   },
+  //   {
+  //     field: "middleName",
+  //     headerName: "Tên Thánh",
+  //     width: 100,
+  //     editable: false,
+  //     hide: true,
+  //   },
+  //   {
+  //     field: "lastName",
+  //     headerName: "Tên Thánh",
+  //     width: 100,
+  //     editable: false,
+  //     hide: true,
+  //   },
+  //   {
+  //     field: "fullname",
+  //     headerName: "Họ Tên",
+  //     width: 150,
+  //     editable: false,
+  //     valueGetter: (params) =>
+  //       `${params.row.firstName || ""} ${params.row.middleName || ""} ${
+  //         params.row.lastName || ""
+  //       }`,
+  //   },
+  //   { field: "gender", headerName: "Giới Tính", width: 80, editable: false },
+  //   { field: "birthday", headerName: "Ngày Sinh", width: 110, editable: false },
+  //   {
+  //     field: "baptismDay",
+  //     headerName: "Ngày Rửa Tội",
+  //     width: 130,
+  //     editable: false,
+  //   },
+  //   {
+  //     field: "baptismPlace",
+  //     headerName: "Nơi Rửa Tội",
+  //     width: 100,
+  //     editable: false,
+  //   },
+  //   { field: "address", headerName: "Địa Chỉ", width: 160, editable: false },
+  //   { field: "oldClass", headerName: "Lớp Cũ", width: 130, editable: false },
+  //   { field: "newClass", headerName: "Lớp Mới", width: 130, editable: false },
+  //   {
+  //     field: "actions",
+  //     headerName: "",
+  //     width: 80,
+  //     editable: false,
+  //     renderCell: (params) => {
+  //       return (
+  //         <>
+  //           <button className="button-icon" onClick={handleEdit}>
+  //             <FiEdit className="icon" />
+  //           </button>
+  //           <button className="button-icon" onClick={handleDelete}>
+  //             <FiTrash2 className="icon" />
+  //           </button>
+  //         </>
+  //       );
+  //     },
+  //   },
+  // ];
+
   return (
     <div className="table-responsive-lg">
-      <DataGrid
+      {/* <DataGrid
         rows={students}
         columns={columns}
         initialState={{
@@ -155,9 +164,9 @@ const ListStudents = () => {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
-        sx={{fontSize: 14}}
-      />
-      {/* <table className="table p-5 table-hover">
+        sx={{fontSize: 16}}
+      /> */}
+      <table className="table p-5 table-hover">
         <thead className="thead-dark">
           <tr>
             <th className="text-primar text-center" scope="col"></th>
@@ -202,7 +211,13 @@ const ListStudents = () => {
                     <IoSquareOutline />
                   </td>
                   <td>
-                    <IoIosEye />
+                    <Link
+                      to={`/studentdetail/${item.id}`}
+                      className="button-icon"
+                      onClick={handleShow}
+                    >
+                        <IoIosEye className="icon" />
+                    </Link>
                   </td>
                   <td>{item.holyName}</td>
                   <td>
@@ -229,7 +244,17 @@ const ListStudents = () => {
               );
             })}
         </tbody>
-      </table> */}
+      </table>
+
+      <Modal show={show} onHide={handleClose} scrollable="true" size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Học Sinh</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

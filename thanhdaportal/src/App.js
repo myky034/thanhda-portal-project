@@ -10,6 +10,8 @@ import Settings from './views/admin/Settings/Settings';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store";
+import StudentDetail from './views/admin/Students/ListStudents/StudentDetail/StudentDetail';
+import Login from "./views/login/Login";
 
 function App() {
   return (
@@ -17,12 +19,14 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
+            <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/student" element={<Students />} />
             <Route path="/parent" element={<Parents />} />
             <Route path="/teacher" element={<Teachers />} />
             <Route path="/statistic" element={<Statistics />} />
             <Route path="/setting" element={<Settings />} />
+            <Route path="/studentdetail/:id" element={<StudentDetail />} />
           </Routes>
         </div>
       </Router>
