@@ -46,13 +46,16 @@ let handleCreateUser = async (req, res) => {
 }
 
 let handleDeleteUser = async (req, res) => {
-    if (!req.body.id) {
+    console.log('req=====', req)
+    let idUser = req.query.id
+    console.log('User id', idUser)
+    if (!idUser) {
         return res.status(200).json({
             errCode: 1,
-            errMessage: "Missing required params"
+            errMessage: "Missing required idUser"
         })
     }
-    let message = await userService.deleteUser(req.body.id)
+    let message = await userService.deleteUser(idUser)
     return res.status(200).json(message)
 }
 
