@@ -1,14 +1,42 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
+import StudentService from "../../../../../api/axiosStudentServices";
 
 const StudentDetail = () => {
-  const [isLoading, setisLoading] = useState(false);
-  const [students, setStudents] = useState([]);
+
   const { id } = useParams();
+  const navigate = useNavigate();
+  const initialValues = {
+    id: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    username: "",
+    password: "",
+    email: "",
+    birthday: "",
+    phoneNumber: "",
+    gender: "",
+    address: "",
+    city: "",
+    baptismDay: "",
+    baptismPlace: "",
+    role: "",
+    holyName: "",
+    oldClass: "",
+    newClass: "",
+    holyNameFather: "",
+    fatherName: "",
+    holyNameMother: "",
+    motherName: "",
+  };
+
+  const [students, setStudents] = useState(initialValues);
+  const [isLoading, setisLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     setisLoading(true);
@@ -27,9 +55,80 @@ const StudentDetail = () => {
       });
   }, []);
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setStudents({ ...students, [name]: value });
+  };
+
+  const updateStudents = () => {
+
+    // StudentService.updateStudent(students.id, students)
+    //   .then((res) => {
+    //     setStudents(res.data);
+    //     console.log(res.data);
+    //     navigate("/student");
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+
+    let data = {
+      id: students.id,
+      firstName: students.firstName,
+      middleName: students.middleName,
+      lastName: students.lastName,
+      username: students.username,
+      password: students.password,
+      email: students.email,
+      birthday: students.birthday,
+      phoneNumber: students.phoneNumber,
+      gender: students.gender,
+      address: students.address,
+      city: students.city,
+      baptismDay: students.baptismDay,
+      baptismPlace: students.baptismPlace,
+      role: students.role,
+      holyName: students.holyName,
+      oldClass: students.oldClass,
+      newClass: students.newClass,
+      holyNameFather: students.holyNameFather,
+      fatherName: students.fatherName,
+      holyNameMother: students.holyNameMother,
+      motherName: students.motherName,
+    };
+
+    //PUT method
+    axios
+      .put(`http://localhost:8080/api/ms-user/edit`, data)
+      .then(function (res) {
+        // setStudents({
+        //   firstName: res.data.firstName,
+        //   updatedAt: res.data.updatedAt,
+        // });
+        setStudents(res.data.users);
+        setSubmitted(true);
+        console.log(res.data);
+        navigate("/student");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <div>
       <Form>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>ID</Form.Label>
+          <Form.Control
+            type="text"
+            name="id"
+            placeholder="ID"
+            value={students.id}
+            onChange={handleInputChange}
+            disabled
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Tên Thánh</Form.Label>
           <Form.Control
@@ -37,7 +136,7 @@ const StudentDetail = () => {
             name="holyName"
             placeholder="Tên Thánh"
             value={students.holyName}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
@@ -47,7 +146,7 @@ const StudentDetail = () => {
             placeholder="Họ"
             name="firstName"
             value={students.firstName}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
@@ -57,7 +156,7 @@ const StudentDetail = () => {
             placeholder="Tên Lót"
             name="middleName"
             value={students.middleName}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -67,7 +166,7 @@ const StudentDetail = () => {
             placeholder="Tên"
             name="lastName"
             value={students.lastName}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -77,7 +176,7 @@ const StudentDetail = () => {
             name="email"
             placeholder="name@example.com"
             value={students.email}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
@@ -87,7 +186,7 @@ const StudentDetail = () => {
             name="username"
             placeholder="Username"
             value={students.username}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
@@ -97,7 +196,7 @@ const StudentDetail = () => {
             placeholder="Password"
             name="password"
             value={students.password}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -105,8 +204,9 @@ const StudentDetail = () => {
           <Form.Control
             type="text"
             name="birthday"
+            placeholder="Ngày sinh"
             value={students.birthday}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -116,7 +216,7 @@ const StudentDetail = () => {
             placeholder="Số điện thoại"
             name="phoneNumber"
             value={students.phoneNumber}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -132,6 +232,7 @@ const StudentDetail = () => {
                 id={`inline-${type}-1`}
                 value={"male" && students.gender === "1" ? true : false}
                 defaultChecked={students.gender === "Male"}
+                onChange={handleInputChange}
               />
               <Form.Check
                 inline
@@ -141,7 +242,7 @@ const StudentDetail = () => {
                 id={`inline-${type}-2`}
                 value={"female" && students.gender === "1" ? true : false}
                 defaultChecked={students.gender === "Female"}
-                //onChange={handleInputChange}
+                onChange={handleInputChange}
               />
             </div>
           ))}
@@ -154,12 +255,19 @@ const StudentDetail = () => {
             placeholder="Địa chỉ"
             name="address"
             value={students.address}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Thành Phố</Form.Label>
-          <Form.Select
+          <Form.Control
+            type="text"
+            placeholder="Thành phố"
+            name="city"
+            value={students.city}
+            onChange={handleInputChange}
+          />
+          {/* <Form.Select
             aria-label="Default select example"
             name="city"
             value={students.city}
@@ -168,15 +276,16 @@ const StudentDetail = () => {
             <option value="1">One</option>
             <option value="2">Two</option>
             <option value="3">Three</option>
-          </Form.Select>
+          </Form.Select> */}
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Ngày Rửa Tội</Form.Label>
           <Form.Control
             type="text"
             name="baptismDay"
+            placeholder="Ngày rửa tội"
             value={students.baptismDay}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -186,7 +295,7 @@ const StudentDetail = () => {
             placeholder="Nơi Rửa Tội"
             name="baptismPlace"
             value={students.baptismPlace}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -196,7 +305,7 @@ const StudentDetail = () => {
             placeholder="Tên Thánh Cha"
             name="holyNameFather"
             value={students.holyNameFather}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -206,7 +315,7 @@ const StudentDetail = () => {
             placeholder="Họ Tên Cha"
             name="fatherName"
             value={students.fatherName}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -216,7 +325,7 @@ const StudentDetail = () => {
             placeholder="Tên Thánh Mẹ"
             name="holyNameMother"
             value={students.holyNameMother}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -226,7 +335,7 @@ const StudentDetail = () => {
             placeholder="Họ Tên Mẹ"
             name="motherName"
             value={students.motherName}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -236,7 +345,7 @@ const StudentDetail = () => {
             placeholder="Lớp Cũ"
             name="oldClass"
             value={students.oldClass}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -246,21 +355,8 @@ const StudentDetail = () => {
             placeholder="Lớp Mới"
             name="newClass"
             value={students.newClass}
-            //onChange={handleInputChange}
+            onChange={handleInputChange}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Role</Form.Label>
-          <Form.Select
-            aria-label="Default select example"
-            name="role"
-            value={students.role}
-            //onChange={handleInputChange}
-          >
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select>
         </Form.Group>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -268,6 +364,7 @@ const StudentDetail = () => {
             variant="secondary"
             //onClick={newStudents && handleClose}
             style={{ marginRight: "10px" }}
+            onClick={updateStudents}
           >
             Update
           </Button>
