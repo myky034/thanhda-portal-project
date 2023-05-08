@@ -173,10 +173,30 @@ let updateUser = (data) => {
                 where: { id: data.id },
                 raw: false
             })
+            console.log('Data update User by id: ', data)
             console.log('find one  User by id: ', user)
             if (user) {
                 user.firstName = data.firstName //user.firstName thuộc tính từ db
+                user.middleName = data.middleName
                 user.lastName = data.lastName   // data.firstName thuộc tính từ form edit
+                user.username = data.username
+                user.email = data.email
+                user.city = data.city
+                user.baptismDay = data.baptismDay
+                user.baptismPlace = data.baptismPlace
+                user.address = data.address
+                user.phoneNumber = data.phoneNumber
+                user.gender = data.gender
+                user.image = data.image
+                user.roleId = data.roleId
+                user.holyName = data.holyName
+                user.oldClass = data.oldClass
+                user.newClass = data.newClass
+                user.holyNameFather = data.holyNameFather
+                user.fatherName = data.fatherName
+                user.holyNameMother = data.holyNameMother
+                user.motherName = data.motherName
+
                 await user.save()
                 resolve({
                     errCode: 0,

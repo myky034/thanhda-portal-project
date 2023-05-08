@@ -62,7 +62,6 @@ let handleEditUser = async (req, res) => {
     return res.status(200).json(message)
 }
 let handleGetAllCodes = async (req, res) => {
-    console.log('get all code')
     try {
         let type = req.query.type
         let data = await userService.getAllCodes(type)
