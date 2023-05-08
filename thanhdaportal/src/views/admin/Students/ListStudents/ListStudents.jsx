@@ -169,7 +169,7 @@ const ListStudents = () => {
       <table className="table p-5 table-hover">
         <thead className="thead-dark">
           <tr>
-            <th className="text-primar text-center" scope="col"></th>
+            {/* <th className="text-primar text-center" scope="col"></th> */}
             <th className="text-primar text-center" scope="col"></th>
             <th className="text-primar" scope="col">
               Tên Thánh
@@ -207,9 +207,9 @@ const ListStudents = () => {
             students.map((item, index) => {
               return (
                 <tr key={index} className="align-middle">
-                  <td>
+                  {/* <td>
                     <IoSquareOutline />
-                  </td>
+                  </td> */}
                   <td>
                     <Link
                       to={`/studentdetail/${item.id}`}

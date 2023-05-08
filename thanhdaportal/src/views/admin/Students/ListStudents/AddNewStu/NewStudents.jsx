@@ -242,6 +242,7 @@ const NewStudents = () => {
               <Form.Control
                 type="text"
                 name="birthday"
+                placeholder="Ngày sinh"
                 value={students.birthday}
                 onChange={handleInputChange}
               />
@@ -310,26 +311,30 @@ const NewStudents = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Thành Phố</Form.Label>
-              <Form.Select
+              <Form.Control
+                type="text"
+                placeholder="Thành phố"
+                name="city"
+                value={students.city}
+                onChange={handleInputChange}
+              />
+              {/* <Form.Select
                 aria-label="Default select example"
                 name="city"
                 value={students.city}
                 onChange={handleInputChange}
-                //isInvalid={!!errors.city}
               >
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
-              </Form.Select>
-              {/* <Form.Control.Feedback type="invalid">
-                    {errors.city}
-                  </Form.Control.Feedback> */}
+              </Form.Select> */}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Ngày Rửa Tội</Form.Label>
               <Form.Control
                 type="text"
                 name="baptismDay"
+                placeholder="Ngày rửa tội"
                 value={students.baptismDay}
                 onChange={handleInputChange}
               />
@@ -403,19 +408,6 @@ const NewStudents = () => {
                 value={students.newClass}
                 onChange={handleInputChange}
               />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Role</Form.Label>
-              <Form.Select
-                aria-label="Default select example"
-                name="role"
-                value={students.role}
-                onChange={handleInputChange}
-              >
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
             </Form.Group>
 
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
