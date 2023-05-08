@@ -173,16 +173,11 @@ let updateUser = (data) => {
                 where: { id: data.id },
                 raw: false
             })
+            console.log('find one  User by id: ', user)
             if (user) {
-                user.firstName = data.firstName,
-                    user.middleName = data.lastName,
-                    user.lastName = data.lastName,
-                    user.email = data.email,
-                    user.phoneNumber = data.phoneNumber,
-                    user.city = data.city,
-                    user.address = data.address,
-                    await user.save()
-
+                user.firstName = data.firstName //user.firstName thuộc tính từ db
+                user.lastName = data.lastName   // data.firstName thuộc tính từ form edit
+                await user.save()
                 resolve({
                     errCode: 0,
                     message: 'Update user succeeds',
@@ -202,6 +197,7 @@ let updateUser = (data) => {
 
 let getAllCodes = (inputType) => {
     return new Promise(async (resolve, reject) => {
+        console.log('serviceget all code')
         try {
 
             if (!inputType) {
@@ -214,8 +210,6 @@ let getAllCodes = (inputType) => {
                 res = await db.Allcode.findAll({
                     where: { type: inputType }
                 })
-                res.errCode = 0
-                res.data
                 resolve(res)
             }
         } catch (e) {
