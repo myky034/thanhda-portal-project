@@ -60,6 +60,12 @@ const StudentDetail = () => {
     setStudents({ ...students, [name]: value });
   };
 
+  const handleClose = () => {
+    setStudents(initialValues);
+    setSubmitted(false);
+    navigate("/student");
+  }
+
   const updateStudents = () => {
 
     // StudentService.updateStudent(students.id, students)
@@ -101,10 +107,6 @@ const StudentDetail = () => {
     axios
       .put(`http://localhost:8080/api/ms-user/edit`, data)
       .then(function (res) {
-        // setStudents({
-        //   firstName: res.data.firstName,
-        //   updatedAt: res.data.updatedAt,
-        // });
         setStudents(res.data.users);
         setSubmitted(true);
         console.log(res.data);
@@ -118,17 +120,6 @@ const StudentDetail = () => {
   return (
     <div>
       <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>ID</Form.Label>
-          <Form.Control
-            type="text"
-            name="id"
-            placeholder="ID"
-            value={students.id}
-            onChange={handleInputChange}
-            disabled
-          />
-        </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Tên Thánh</Form.Label>
           <Form.Control
@@ -368,7 +359,7 @@ const StudentDetail = () => {
           >
             Update
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={handleClose}>
             Cancel
           </Button>
         </div>

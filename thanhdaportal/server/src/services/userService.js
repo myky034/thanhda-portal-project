@@ -108,21 +108,28 @@ let createNewUser = (data) => {
             } else {
                 let hasPasswordFromBcrypt = await hasUserPasssword(data.password)
                 await db.User.create({
-                    firstName: data.firstName,
-                    middleName: data.middleName,
-                    lastName: data.lastName,
-                    username: data.username,
-                    password: hasPasswordFromBcrypt,
-                    email: data.email,
-                    birthday: data.birthday,
-                    city: data.city,
-                    baptismDay: data.baptismDay,
-                    baptismPlace: data.baptismPlace,
-                    address: data.address,
-                    phoneNumber: data.phoneNumber,
-                    gender: data.gender === '1' ? true : false,
-                    roleId: data.roleId,
-                })
+                  firstName: data.firstName,
+                  middleName: data.middleName,
+                  lastName: data.lastName,
+                  username: data.username,
+                  password: hasPasswordFromBcrypt,
+                  email: data.email,
+                  birthday: data.birthday,
+                  city: data.city,
+                  baptismDay: data.baptismDay,
+                  baptismPlace: data.baptismPlace,
+                  address: data.address,
+                  phoneNumber: data.phoneNumber,
+                  gender: data.gender === "1" ? true : false,
+                  roleId: data.roleId,
+                  holyName: data.holyName,
+                  oldClass: data.oldClass,
+                  newClass: data.newClass,
+                  holyNameFather: data.holyNameFather,
+                  fatherName: data.fatherName,
+                  holyNameMother: data.holyNameMother,
+                  motherName: data.motherName,
+                });
                 resolve({
                     errCode: 0,
                     message: 'OK'

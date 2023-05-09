@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./NewStudents.scss";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,8 +6,10 @@ import Modal from "react-bootstrap/Modal";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 const NewStudents = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -40,7 +42,11 @@ const NewStudents = () => {
   const [students, setStudents] = useState(initialValues);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = event => {
+  useEffect(() => {
+    loadStudents();
+  }, []);
+
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setStudents({ ...students, [name]: value });
   };
@@ -102,6 +108,7 @@ const NewStudents = () => {
           });
           setSubmitted(true);
           console.log(res.data);
+          navigate("/student");
         })
         .catch((e) => {
           console.log(e);
@@ -150,9 +157,12 @@ const NewStudents = () => {
     setSubmitted(false);
   };
 
-  const onSubmit = (values, props) => {
-    console.log(values);
-  };
+  const loadStudents = async () => {
+    const result = await axios.get(
+      "http://localhost:8080/api/ms-user/all-users?id=ALL"
+    );
+    setStudents(result.data);
+  }
 
   return (
     <div>
@@ -257,7 +267,7 @@ const NewStudents = () => {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            {/* <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Giới Tính</Form.Label>
               {["checkbox"].map((type) => (
                 <div key={`inline-${type}`} className="mb-3">
@@ -271,9 +281,6 @@ const NewStudents = () => {
                     value={"male" && students.gender === "1" ? true : false}
                     defaultChecked={students.gender === "Male"}
                     onChange={handleInputChange}
-                    // isInvalid={!!errors.gender}
-                    // feedback={errors.terms}
-                    // feedbackType="invalid"
                   />
                   <Form.Check
                     inline
@@ -284,13 +291,10 @@ const NewStudents = () => {
                     value={"female" && students.gender === "1" ? true : false}
                     defaultChecked={students.gender === "Female"}
                     onChange={handleInputChange}
-                    // isInvalid={!!errors.gender}
-                    // feedback={errors.terms}
-                    // feedbackType="invalid"
                   />
                 </div>
               ))}
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
