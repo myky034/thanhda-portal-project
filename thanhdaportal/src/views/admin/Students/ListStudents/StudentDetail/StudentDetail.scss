@@ -1,0 +1,40 @@
+.student-detail-page {
+  width: 100%;
+  height: max-content;
+  position: relative;
+  padding: 3.5rem 0 1.5rem 0;
+
+  .header-student-detail {
+    position: relative;
+    top: 5%;
+    margin-left: 7%;
+  }
+
+  .form-student {
+    width: 90%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    top: 5%;
+    left: 7%;
+
+    .form-student-detail {
+      display: flex;
+      width: 100%;
+    }
+
+    .form-detail-col-left,
+    .form-detail-col-right {
+      width: 50%;
+      padding: 1rem;
+
+      .title-info{
+        position: relative;
+        margin-right: 1.5rem;
+        width: 20%;
+        font-weight: 600;
+      }
+    }
+  }
+}

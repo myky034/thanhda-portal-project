@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { IoSquareOutline } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { FiTrash2, FiEdit } from "react-icons/fi";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import Pagination from './../../../../components/Pagination/Pagination';
+import Spinner from "react-bootstrap/Spinner";
+import Pagination from "./../../../../components/Pagination/Pagination";
 
 let PageSize = 10;
 
@@ -22,6 +23,10 @@ const TableStudents = (props) => {
     return students.slice(firstPageIndex, lastPageIndex);
   });
 
+  useMemo(() => {
+    window.scrollTo({ top: 0 });
+  }, [currentPage]);
+
   useEffect(() => {
     setisLoading(true);
     getStudents();
@@ -37,7 +42,6 @@ const TableStudents = (props) => {
         console.log(res.data);
       })
       .catch((error) => {
-        setisLoading(true);
         console.log(error);
       });
   };
@@ -56,6 +60,22 @@ const TableStudents = (props) => {
       });
   };
 
+  if (!students) {
+    return "No data found. Please click on button Add New";
+  } else if (isLoading) {
+    return (
+      <div
+        className="spinner-loading"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Spinner animation="border" />
+      </div>
+    );
+  }
   return (
     <div>
       <table className="table p-5 table-hover">
@@ -113,11 +133,11 @@ const TableStudents = (props) => {
                     </td>
                     <td>{item.holyName}</td>
                     <td>
-                      {item.firstName +
+                      {item.lastName +
                         " " +
                         item.middleName +
                         " " +
-                        item.lastName}
+                        item.firstName}
                     </td>
                     <td>{item.gender}</td>
                     <td>{item.birthday}</td>
@@ -128,7 +148,7 @@ const TableStudents = (props) => {
                     <td>{item.newClass}</td>
                     <td>
                       <Link
-                        to={`/studentdetail/${item.id}`}
+                        to={`/editstudent/${item.id}`}
                         className="button-icon"
                       >
                         <FiEdit className="icon" />
@@ -158,6 +178,6 @@ const TableStudents = (props) => {
       />
     </div>
   );
-}
+};
 
-export default TableStudents
+export default TableStudents;

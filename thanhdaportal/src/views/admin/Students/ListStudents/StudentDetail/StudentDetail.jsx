@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import './StudentDetail.scss';
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import StudentService from "../../../../../api/axiosStudentServices";
+import Sidebar from "../../../../../components/SideBar/Sidebar";
 
 const StudentDetail = () => {
 
@@ -67,17 +68,6 @@ const StudentDetail = () => {
   }
 
   const updateStudents = () => {
-
-    // StudentService.updateStudent(students.id, students)
-    //   .then((res) => {
-    //     setStudents(res.data);
-    //     console.log(res.data);
-    //     navigate("/student");
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
-
     let data = {
       id: students.id,
       firstName: students.firstName,
@@ -118,247 +108,135 @@ const StudentDetail = () => {
   };
 
   return (
-    <div>
-      <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Tên Thánh</Form.Label>
-          <Form.Control
-            type="text"
-            name="holyName"
-            placeholder="Tên Thánh"
-            value={students.holyName}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-          <Form.Label>Họ</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Họ"
-            name="firstName"
-            value={students.firstName}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-          <Form.Label>Tên Lót</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Tên Lót"
-            name="middleName"
-            value={students.middleName}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Tên</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Tên"
-            name="lastName"
-            value={students.lastName}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            placeholder="name@example.com"
-            value={students.email}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={students.username}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={students.password}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Ngày Sinh</Form.Label>
-          <Form.Control
-            type="text"
-            name="birthday"
-            placeholder="Ngày sinh"
-            value={students.birthday}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Số Điện Thoại</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Số điện thoại"
-            name="phoneNumber"
-            value={students.phoneNumber}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Giới Tính</Form.Label>
-          {["checkbox"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                required
-                inline
-                label="Male"
-                name="gender"
-                type={type}
-                id={`inline-${type}-1`}
-                value={"male" && students.gender === "1" ? true : false}
-                defaultChecked={students.gender === "Male"}
-                onChange={handleInputChange}
-              />
-              <Form.Check
-                inline
-                label="Female"
-                name="gender"
-                type={type}
-                id={`inline-${type}-2`}
-                value={"female" && students.gender === "1" ? true : false}
-                defaultChecked={students.gender === "Female"}
-                onChange={handleInputChange}
-              />
-            </div>
-          ))}
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Địa Chỉ</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Địa chỉ"
-            name="address"
-            value={students.address}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Thành Phố</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Thành phố"
-            name="city"
-            value={students.city}
-            onChange={handleInputChange}
-          />
-          {/* <Form.Select
-            aria-label="Default select example"
-            name="city"
-            value={students.city}
-            //onChange={handleInputChange}
-          >
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </Form.Select> */}
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Ngày Rửa Tội</Form.Label>
-          <Form.Control
-            type="text"
-            name="baptismDay"
-            placeholder="Ngày rửa tội"
-            value={students.baptismDay}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Nơi Rửa Tội</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Nơi Rửa Tội"
-            name="baptismPlace"
-            value={students.baptismPlace}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Tên Thánh Cha</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Tên Thánh Cha"
-            name="holyNameFather"
-            value={students.holyNameFather}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Họ Tên Cha</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Họ Tên Cha"
-            name="fatherName"
-            value={students.fatherName}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Tên Thánh Mẹ</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Tên Thánh Mẹ"
-            name="holyNameMother"
-            value={students.holyNameMother}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Họ Tên Mẹ</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Họ Tên Mẹ"
-            name="motherName"
-            value={students.motherName}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Lớp Cũ</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Lớp Cũ"
-            name="oldClass"
-            value={students.oldClass}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Lớp Mới</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Lớp Mới"
-            name="newClass"
-            value={students.newClass}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
+    <div className="student-detail-page">
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+      </div>
 
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            variant="secondary"
-            //onClick={newStudents && handleClose}
-            style={{ marginRight: "10px" }}
-            onClick={updateStudents}
+      <div className="header-student-detail">
+        <h1 className="title-student-detail">Student Detail</h1>
+      </div>
+      <Form className="form-student">
+        <div className="form-student-detail">
+          <div className="form-detail-col-left">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Tên Thánh</Form.Label>
+              <Form.Label>{students.holyName}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Họ Tên</Form.Label>
+              <Form.Label>
+                {students.lastName + " "}
+                {students.middleName + " "}
+                {students.firstName}
+              </Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Ngày Sinh</Form.Label>
+              <Form.Label>{students.birthday}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Giới Tính</Form.Label>
+              {["checkbox"].map((type) => (
+                <div key={`inline-${type}`} className="mb-3">
+                  <Form.Check
+                    required
+                    inline
+                    label="Male"
+                    name="gender"
+                    type={type}
+                    id={`inline-${type}-1`}
+                    value={"male" && students.gender === "1" ? true : false}
+                    defaultChecked={students.gender === "Male"}
+                    onChange={handleInputChange}
+                  />
+                  <Form.Check
+                    inline
+                    label="Female"
+                    name="gender"
+                    type={type}
+                    id={`inline-${type}-2`}
+                    value={"female" && students.gender === "1" ? true : false}
+                    defaultChecked={students.gender === "Female"}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              ))}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Số Điện Thoại</Form.Label>
+              <Form.Label>{students.phoneNumber}</Form.Label>
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label className="title-info">Địa Chỉ</Form.Label>
+              <Form.Label>
+                {students.address + " "}
+                {students.city}
+              </Form.Label>
+            </Form.Group>
+          </div>
+          <div className="form-detail-col-right">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+              <Form.Label className="title-info">Username</Form.Label>
+              <Form.Label>{students.username}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+              <Form.Label className="title-info">Password</Form.Label>
+              <Form.Label>{students.password}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Email</Form.Label>
+              <Form.Label>{students.email}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Ngày Rửa Tội</Form.Label>
+              <Form.Label>{students.baptismDay}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Nơi Rửa Tội</Form.Label>
+              <Form.Label>{students.baptismPlace}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Họ Tên Cha</Form.Label>
+              <Form.Label>
+                {students.holyNameFather + " "}
+                {students.fatherName}
+              </Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Họ Tên Mẹ</Form.Label>
+              <Form.Label>
+                {students.holyNameMother + " "}
+                {students.motherName}
+              </Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Lớp Cũ</Form.Label>
+              <Form.Label>{students.oldClass}</Form.Label>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label className="title-info">Lớp Mới</Form.Label>
+              <Form.Label>{students.newClass}</Form.Label>
+            </Form.Group>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            padding: "0rem 1rem 1rem 0",
+          }}
+        >
+          <Link
+            to={`/editstudent/${students.id}`}
+            style={{ marginRight: "10px", width: "80px", height: "38px" }}
+            className="btn btn-secondary button-icon"
           >
-            Update
-          </Button>
+            Edit
+          </Link>
           <Button variant="primary" type="submit" onClick={handleClose}>
             Cancel
           </Button>
