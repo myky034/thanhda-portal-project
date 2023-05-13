@@ -34,39 +34,9 @@ const StudentDetail = () => {
     holyNameMother: "",
     motherName: "",
   };
-
-  const [students, setStudents] = useState(initialValues);
-
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const initialValues = {
-    id: "",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    email: "",
-    birthday: "",
-    phoneNumber: "",
-    gender: "",
-    address: "",
-    city: "",
-    baptismDay: "",
-    baptismPlace: "",
-    role: "",
-    holyName: "",
-    oldClass: "",
-    newClass: "",
-    holyNameFather: "",
-    fatherName: "",
-    holyNameMother: "",
-    motherName: "",
-  };
-
+  
   const [students, setStudents] = useState(initialValues);
   const [isLoading, setisLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
