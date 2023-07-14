@@ -3,8 +3,6 @@ import "./NewStudents.scss";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { Formik, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -37,10 +35,12 @@ const NewStudents = () => {
     fatherName: "",
     holyNameMother: "",
     motherName: "",
+    image: ""
   };
 
   const [students, setStudents] = useState(initialValues);
   const [submitted, setSubmitted] = useState(false);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     loadStudents();
@@ -51,10 +51,18 @@ const NewStudents = () => {
     setStudents({ ...students, [name]: value });
   };
 
+  const handleImageChange = (event) => {
+    console.log(event.target.files);
+    setImage(event.target.files[0]);
+  }
+
   const saveStudents = () => {
     //console.log("check new student: ", newStudents);
     const isValid = checkValidInput();
     if (isValid === true) {
+      const formData = new FormData();
+      formData.append("image", image);
+
       let data = {
         firstName: students.firstName,
         middleName: students.middleName,
@@ -76,12 +84,12 @@ const NewStudents = () => {
         holyNameFather: students.holyNameFather,
         fatherName: students.fatherName,
         holyNameMother: students.holyNameMother,
-        motherName: students.motherName,
+        motherName: students.motherName
       };
 
       //POST method
       axios
-        .post("http://localhost:8080/api/ms-user/create", data)
+        .post("http://localhost:8080/api/ms-user/create", data, formData)
         .then(function (res) {
           setStudents({
             firstName: res.data.firstName,
@@ -104,7 +112,7 @@ const NewStudents = () => {
             holyNameFather: res.data.holyNameFather,
             fatherName: res.data.fatherName,
             holyNameMother: res.data.holyNameMother,
-            motherName: res.data.motherName,
+            motherName: res.data.motherName
           });
           setSubmitted(true);
           console.log(res.data);
@@ -178,6 +186,15 @@ const NewStudents = () => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="file"
+                name="image"
+                value={students.image}
+                onChange={handleImageChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Tên Thánh</Form.Label>
               <Form.Control
                 type="text"
@@ -192,8 +209,8 @@ const NewStudents = () => {
               <Form.Control
                 type="text"
                 placeholder="Họ"
-                name="firstName"
-                value={students.firstName}
+                name="lastName"
+                value={students.lastName}
                 onChange={handleInputChange}
               />
             </Form.Group>
@@ -212,8 +229,8 @@ const NewStudents = () => {
               <Form.Control
                 type="text"
                 placeholder="Tên"
-                name="lastName"
-                value={students.lastName}
+                name="firstName"
+                value={students.firstName}
                 onChange={handleInputChange}
               />
             </Form.Group>
