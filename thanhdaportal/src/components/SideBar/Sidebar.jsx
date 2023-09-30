@@ -1,13 +1,13 @@
 import React from "react";
-import './SideBar.scss';
+import "./SideBar.scss";
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -107,261 +107,267 @@ const Sidebar = () => {
 
   return (
     <div>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar className="appbar-sidebar" position="fixed" open={open}>
-          <Toolbar className="appbar-toolbar">
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{
-                marginRight: 5,
-                ...(open && { display: "none" }),
+      <CssBaseline />
+      <AppBar className="appbar-sidebar" position="fixed" open={open}>
+        <Toolbar className="appbar-toolbar">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{
+              marginRight: 5,
+              ...(open && { display: "none" }),
+            }}
+            className="appbar-icon-button"
+          >
+            <FiMenu className="appbar-icon-hambuger" />
+          </IconButton>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              fontFamily: "Quicksand, sans-serif",
+            }}
+          >
+            Thanh Da Portal
+          </Typography>
+          <SearchBar />
+        </Toolbar>
+      </AppBar>
+      <Drawer className="drawer-header" variant="permanent" open={open}>
+        <DrawerHeader className="drawer-header-sidebar">
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "rtl" ? <BsChevronRight /> : <BsChevronLeft />}
+          </IconButton>
+        </DrawerHeader>
+        <List className="sidebar-menu">
+          <NavLink
+            className="sidebar-link"
+            activeClassName="active"
+            to="/dashboard"
+          >
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => {
+                navigate("/dashboard");
               }}
-              className="appbar-icon-button"
+              className="sidebar-link-item"
             >
-              <FiMenu className="appbar-icon-hambuger" />
-            </IconButton>
-            <SearchBar style={{ justifyContent: "flex-end" }} />
-          </Toolbar>
-        </AppBar>
-        <Drawer className="drawer-header" variant="permanent" open={open}>
-          <DrawerHeader className="drawer-header-sidebar">
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <BsChevronRight />
-              ) : (
-                <BsChevronLeft />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <List className="sidebar-menu">
-            <NavLink
-              className="sidebar-link"
-              activeClassName="active"
-              to="/dashboard"
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+                className="sidebar-item-button"
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                  className="sidebar-item-icon"
+                >
+                  <HiHome className="icons" />
+                </ListItemIcon>
+                <ListItemText
+                  className="sidebar-link sidebar-text"
+                  primary="Dashboard"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
+
+          <Link className="sidebar-link" to="/student">
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => {
+                navigate("/student");
+              }}
+              className="sidebar-link-item"
             >
-              <ListItem
-                disablePadding
-                sx={{ display: "block" }}
-                onClick={() => {
-                  navigate("/dashboard");
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
-                className="sidebar-link-item"
+                className="sidebar-item-button"
               >
-                <ListItemButton
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
-                  className="sidebar-item-button"
+                  className="sidebar-item-icon"
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                    className="sidebar-item-icon"
-                  >
-                    <HiHome className="icons" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="sidebar-link sidebar-text"
-                    primary="Dashboard"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            </NavLink>
+                  <FaUserGraduate className="icons" />
+                </ListItemIcon>
+                <ListItemText
+                  className="sidebar-link sidebar-text"
+                  primary="Student"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
 
-            <Link className="sidebar-link" to="/student">
-              <ListItem
-                disablePadding
-                sx={{ display: "block" }}
-                onClick={() => {
-                  navigate("/student");
+          <Link className="sidebar-link" to="/parent">
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => {
+                navigate("/parent");
+              }}
+              className="sidebar-link-item"
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
-                className="sidebar-link-item"
+                className="sidebar-item-button"
               >
-                <ListItemButton
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
-                  className="sidebar-item-button"
+                  className="sidebar-item-icon"
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                    className="sidebar-item-icon"
-                  >
-                    <FaUserGraduate className="icons" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="sidebar-link sidebar-text"
-                    primary="Student"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            </Link>
+                  <FaUserFriends className="icons" />
+                </ListItemIcon>
+                <ListItemText
+                  className="sidebar-link sidebar-text"
+                  primary="Parent"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
 
-            <Link className="sidebar-link" to="/parent">
-              <ListItem
-                disablePadding
-                sx={{ display: "block" }}
-                onClick={() => {
-                  navigate("/parent");
+          <Link className="sidebar-link" to="/teacher">
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => {
+                navigate("/teacher");
+              }}
+              className="sidebar-link-item"
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
-                className="sidebar-link-item"
+                className="sidebar-item-button"
               >
-                <ListItemButton
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
-                  className="sidebar-item-button"
+                  className="sidebar-item-icon"
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                    className="sidebar-item-icon"
-                  >
-                    <FaUserFriends className="icons" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="sidebar-link sidebar-text"
-                    primary="Parent"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            </Link>
+                  <FaUserTie className="icons" />
+                </ListItemIcon>
+                <ListItemText
+                  className="sidebar-link sidebar-text"
+                  primary="Teacher"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
 
-            <Link className="sidebar-link" to="/teacher">
-              <ListItem
-                disablePadding
-                sx={{ display: "block" }}
-                onClick={() => {
-                  navigate("/teacher");
+          <Link className="sidebar-link" to="/statistic">
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => {
+                navigate("/statistic");
+              }}
+              className="sidebar-link-item"
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
-                className="sidebar-link-item"
+                className="sidebar-item-button"
               >
-                <ListItemButton
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
-                  className="sidebar-item-button"
+                  className="sidebar-item-icon"
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                    className="sidebar-item-icon"
-                  >
-                    <FaUserTie className="icons" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="sidebar-link sidebar-text"
-                    primary="Teacher"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            </Link>
+                  <FaChartPie className="icons" />
+                </ListItemIcon>
+                <ListItemText
+                  className="sidebar-link sidebar-text"
+                  primary="Statistic"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
 
-            <Link className="sidebar-link" to="/statistic">
-              <ListItem
-                disablePadding
-                sx={{ display: "block" }}
-                onClick={() => {
-                  navigate("/statistic");
+          <Link className="sidebar-link" to="/setting">
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => {
+                navigate("/setting");
+              }}
+              className="sidebar-link-item"
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
                 }}
-                className="sidebar-link-item"
+                className="sidebar-item-button"
               >
-                <ListItemButton
+                <ListItemIcon
                   sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
                   }}
-                  className="sidebar-item-button"
+                  className="sidebar-item-icon"
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                    className="sidebar-item-icon"
-                  >
-                    <FaChartPie className="icons" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="sidebar-link sidebar-text"
-                    primary="Statistic"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-
-            <Link className="sidebar-link" to="/setting">
-              <ListItem
-                disablePadding
-                sx={{ display: "block" }}
-                onClick={() => {
-                  navigate("/setting");
-                }}
-                className="sidebar-link-item"
-              >
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                  className="sidebar-item-button"
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                    className="sidebar-item-icon"
-                  >
-                    <FaCog className="icons" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="sidebar-link sidebar-text"
-                    primary="Setting"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          </List>
-          {/* <Divider />
+                  <FaCog className="icons" />
+                </ListItemIcon>
+                <ListItemText
+                  className="sidebar-link sidebar-text"
+                  primary="Setting"
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        </List>
+        {/* <Divider />
           <Divider /> */}
-        </Drawer>
-      </Box>
+      </Drawer>
     </div>
   );
 };

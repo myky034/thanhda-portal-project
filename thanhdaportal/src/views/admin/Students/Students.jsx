@@ -45,7 +45,7 @@ const Students = () => {
       >
         <div className="student-contents">
           <div className="header-student-page">
-            <h1 className="title-page-student">Students</h1>
+            <h1 className="title-page-student">Thiếu Nhi</h1>
             <div className="header-button-action">
               <div className="dropdown-semester">
                 <Dropdown>
