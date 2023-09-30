@@ -1,0 +1,72 @@
+/* Colors and Fonts */
+:root {
+  /* Fonts and Typography */
+  --biggestFontSize: 2.5rem;
+  --h1FontSize: 1.5rem;
+  --h2FontSize: 1.25rem;
+  --h3FontSize: 1rem;
+  --normalFontSize: 0.983rem;
+  --smallFontSize: 0.813rem;
+  --smallestFontSize: 0.75rem;
+}
+
+.appbar-sidebar {
+  height: 48px;
+  justify-content: center;
+  // background-color: #1976d2 !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+
+  .appbar-toolbar {
+    .appbar-icon-button {
+      .appbar-icon-hambuger {
+        color: #FFF;
+      }
+    }
+  }
+}
+
+.drawer-header {
+  .MuiPaper-root {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .drawer-header-sidebar {
+    min-height: 48px;
+  }
+
+  .sidebar-menu {
+    .sidebar-link {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.54);
+
+      .sidebar-link-item {
+        .sidebar-item-button {
+          align-items: center;
+          justify-content: center;
+          margin: 7px;
+          border-radius: 5px;
+
+          .sidebar-item-icon {
+            .icons {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+
+        .sidebar-text {
+          span {
+            font-family: "Quicksand", sans-serif;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .active {
+      background-color: #1976d2;
+      color: Black;
+      font-weight: bold;
+    }
+  }
+}

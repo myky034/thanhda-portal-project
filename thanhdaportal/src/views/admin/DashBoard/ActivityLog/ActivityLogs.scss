@@ -1,0 +1,119 @@
+.container-activity-log {
+  height: 100%;
+  width: 405px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  left: 5%;
+  margin: 0rem 0rem 0 1rem;
+
+  .activity-log-dashboard {
+    padding: 1rem;
+    max-height: fit-content;
+
+    .activity-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .activity-title {
+        h3 {
+          font-size: 25px;
+        }
+      }
+
+      .activity-see-all {
+        button {
+          border: none;
+          outline: none;
+          background-color: #fff;
+          color: #6b819e;
+          font-size: 15px;
+          font-weight: 500;
+          text-decoration: underline;
+          cursor: pointer;
+          transition: 0.3s all ease;
+
+          &:hover {
+            color: #3f3d56;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    .activity-content {
+      margin-top: 20px;
+
+      .activity-link {
+        text-decoration: none;
+        color: grey;
+
+        .activity-list-item {
+          display: flex;
+          max-height: 100px;
+          border-radius: 5px;
+          padding: 0.25rem;
+          position: relative;
+          align-items: center;
+          margin-bottom: 10px;
+
+          &:hover {
+            background-color: #e6f1ff;
+            transition: 0.5s all ease;
+          }
+
+          .activity-icon {
+            height: 70px;
+            width: 70px;
+            margin-right: 10px;
+            padding: 15px;
+            background-color: #e6f1ff;
+            border-radius: 10px;
+
+            svg {
+              height: 40px;
+              width: 40px;
+            }
+          }
+
+          .activity-list-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            max-height: 100px;
+
+            .activity-list {
+              &-header,
+              &-subheader,
+              &-subcontent {
+                color: #3f3d56;
+                flex-wrap: wrap;
+                word-wrap: break-word;
+                word-break: break-all;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: flex;
+              }
+
+              &-header {
+                font-size: 18px;
+                font-weight: 500;
+              }
+
+              &-subheader {
+                font-size: 13px;
+                margin-top: 5px;
+              }
+
+              &-subcontent {
+                font-size: 16px;
+                margin-top: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

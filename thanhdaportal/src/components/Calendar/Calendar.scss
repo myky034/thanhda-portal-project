@@ -1,0 +1,14 @@
+.calendar-box {
+  margin: 0 0rem 0 5rem;
+  border-radius: 10px;
+  border: none;
+  width: 40%;
+  position: relative;
+
+  .calendar-react {
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem;
+    width: 100%;
+  }
+}

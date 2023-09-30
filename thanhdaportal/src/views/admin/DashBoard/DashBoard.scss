@@ -1,0 +1,10 @@
+.dashboard-box {
+  .drawer-header {
+    min-height: 30px;
+  }
+
+  .container-content{
+    max-height: max-content;
+    overflow: hidden;
+  }
+}
