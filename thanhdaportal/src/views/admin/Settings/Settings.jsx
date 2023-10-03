@@ -78,7 +78,7 @@ const Settings = () => {
           </Box>
           <div>
             <div style={{ marginBottom: "1rem" }}>
-              <h1>Settings</h1>
+              <h2>Settings</h2>
             </div>
             <CssBaseline />
             <Container

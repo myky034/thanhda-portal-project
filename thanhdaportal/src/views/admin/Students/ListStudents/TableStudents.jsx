@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-import { IoSquareOutline } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { FiTrash2, FiEdit } from "react-icons/fi";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 import Pagination from "./../../../../components/Pagination/Pagination";
+import "./TableStudents.css";
+import moment from "moment";
 
-let PageSize = 10;
+let PageSize = 7;
 
 const TableStudents = (props) => {
   const [isLoading, setisLoading] = useState(false);
@@ -76,12 +77,12 @@ const TableStudents = (props) => {
       </div>
     );
   }
+
   return (
     <div>
       <table className="table p-5 table-hover">
         <thead className="thead-dark">
           <tr>
-            {/* <th className="text-primar text-center" scope="col"></th> */}
             <th className="text-primar text-center" scope="col"></th>
             <th className="text-primar" scope="col">
               Tên Thánh
@@ -90,16 +91,13 @@ const TableStudents = (props) => {
               Họ Tên
             </th>
             <th className="text-primar" scope="col">
-              Giới Tính
-            </th>
-            <th className="text-primar" scope="col">
               Ngày Sinh
             </th>
             <th className="text-primar" scope="col">
-              Ngày Rửa Tội
+              Ngày RT
             </th>
             <th className="text-primar" scope="col">
-              Nơi Rửa Tội
+              Nơi RT
             </th>
             <th className="text-primar" scope="col">
               Địa Chỉ
@@ -131,21 +129,24 @@ const TableStudents = (props) => {
                         <IoIosEye className="icon" />
                       </Link>
                     </td>
-                    <td>{item.holyName}</td>
-                    <td>
+                    <td className="text-primar">{item.holyName}</td>
+                    <td className="text-primar">
                       {item.lastName +
                         " " +
                         item.middleName +
                         " " +
                         item.firstName}
                     </td>
-                    <td>{item.gender}</td>
-                    <td>{item.birthday}</td>
-                    <td>{item.baptismDay}</td>
-                    <td>{item.baptismPlace}</td>
-                    <td>{item.address}</td>
-                    <td>{item.oldClass}</td>
-                    <td>{item.newClass}</td>
+                    <td className="text-primar">
+                      {moment(item.birthday).format("DD-MM-YYYY")}
+                    </td>
+                    <td className="text-primar">
+                      {moment(item.baptismDay).format("DD-MM-YYYY")}
+                    </td>
+                    <td className="text-primar">{item.baptismPlace}</td>
+                    <td className="text-primar">{item.address}</td>
+                    <td className="text-primar">{item.oldClass}</td>
+                    <td className="text-primar">{item.newClass}</td>
                     <td>
                       <Link
                         to={`/editstudent/${item.id}`}
@@ -155,13 +156,12 @@ const TableStudents = (props) => {
                       </Link>
                     </td>
                     <td>
-                      <Button
-                        variant="primary"
-                        // onClick={() => setShow(true)}
+                      <Link
                         onClick={() => handleDelete(item.id)}
+                        className="button-icon"
                       >
                         <FiTrash2 />
-                      </Button>
+                      </Link>
                     </td>
                   </tr>
                 </>
