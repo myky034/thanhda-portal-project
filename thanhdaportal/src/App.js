@@ -14,6 +14,7 @@ import StudentDetail from "./views/admin/Students/ListStudents/StudentDetail/Stu
 import Login from "./views/login/Login";
 import EditStudent from "./views/admin/Students/ListStudents/EditStudent/EditStudent";
 import ScrollToTop from "./components/ScrollToTop";
+import NewStudents from "./views/admin/Students/ListStudents/AddNewStu/NewStudents";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/setting" element={<Settings />} />
             <Route path="/studentdetail/:id" element={<StudentDetail />} />
             <Route path="/editstudent/:id" element={<EditStudent />} />
+            <Route path="/addstudent" element={<NewStudents />} />
           </Routes>
         </div>
       </Router>

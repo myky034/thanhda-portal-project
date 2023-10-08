@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Students.scss";
 import Sidebar from "../../../components/SideBar/Sidebar";
-import { Box, Container, CssBaseline, Grid } from "@mui/material";
+import { Box, Container, CssBaseline } from "@mui/material";
 //import { styled } from "@mui/material/styles";
 import TabBar from "../../../components/TabBar/TabBar";
 import { Dropdown, Button } from "react-bootstrap";
-import NewStudents from "./ListStudents/AddNewStu/NewStudents";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
 function simulateNetworkRequest() {
@@ -92,7 +92,14 @@ const Students = () => {
                 </Button>
               </div>
               <div className="addNew-button button-modal">
-                <NewStudents />
+                <Link
+                  to="/addstudent"
+                  style={{ marginRight: "10px", width: "100%", height: "38px" }}
+                  variant="primary"
+                  className="btn btn-primary button-icon"
+                >
+                  Thêm mới
+                </Link>
               </div>
             </div>
           </div>

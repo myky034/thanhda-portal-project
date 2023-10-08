@@ -1,13 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IoIosEye } from "react-icons/io";
 import { FiTrash2, FiEdit } from "react-icons/fi";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TablePagination from '@mui/material/TablePagination';
-import Table from 'react-bootstrap/Table';
-import Button from "react-bootstrap/Button";
-import Spinner from "react-bootstrap/Spinner";
 import "./TableStudents.css";
 import moment from "moment";
 
@@ -15,7 +12,7 @@ const TableStudents = (props) => {
   const [isLoading, setisLoading] = useState(false);
   const [student, setStudents] = useState([]);
 
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleChangePage = (event, newPage) => {
@@ -46,7 +43,8 @@ const TableStudents = (props) => {
       });
   };
 
-  console.log(student);
+  // const sortStudents = [...student].sort((a, b) => a - b);
+  // console.log(sortStudents);
 
   //DELETE method
   const handleDelete = async (id) => {
