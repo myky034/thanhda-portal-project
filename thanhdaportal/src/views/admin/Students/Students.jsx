@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Students.scss";
 import Sidebar from "../../../components/SideBar/Sidebar";
-import { Box, Container, CssBaseline } from "@mui/material";
+import { Box, Container, CssBaseline, Grid } from "@mui/material";
 //import { styled } from "@mui/material/styles";
 import TabBar from "../../../components/TabBar/TabBar";
 import { Dropdown, Button } from "react-bootstrap";
@@ -98,7 +98,7 @@ const Students = () => {
           </div>
           <CssBaseline />
           <Container
-            fixed
+            maxWidth="xl"
             sx={{
               margin: "0px",
               paddingLeft: "0px !important",
