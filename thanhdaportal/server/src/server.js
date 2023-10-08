@@ -5,6 +5,8 @@ import initWebRoutes from './route/web'
 import connectDB from './config/connectDB'
 // import cors from 'cors'
 
+
+
 require('dotenv').config()
 
 let app = express()
@@ -32,6 +34,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+global.__basedir = __dirname + "/.."
 viewEngine(app)
 initWebRoutes(app)
 

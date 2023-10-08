@@ -10,33 +10,33 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      User.belongsToMany(models.Class, { through: models.Teacher_Class })
+      User.hasMany(models.Teacher_Class)
+      User.hasMany(models.School_Year_Summary, { foreignKey: "student_id" })
     }
   }
   User.init(
     {
-      firstName: DataTypes.STRING,
-      middleName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
+      first_name: DataTypes.STRING,
+      middle_name: DataTypes.STRING,
+      last_name: DataTypes.STRING,
       username: DataTypes.STRING,
       password: DataTypes.STRING,
       email: DataTypes.STRING,
       birthday: DataTypes.STRING,
       city: DataTypes.STRING,
-      baptismDay: DataTypes.STRING,
-      baptismPlace: DataTypes.STRING,
+      baptism_day: DataTypes.STRING,
+      baptism_place: DataTypes.STRING,
       address: DataTypes.STRING,
-      phoneNumber: DataTypes.STRING,
-      gender: DataTypes.BOOLEAN,
+      phone_number: DataTypes.STRING,
+      gender: DataTypes.STRING,
       image: DataTypes.STRING,
-      roleId: DataTypes.STRING,
-      holyName: DataTypes.STRING,
-      oldClass: DataTypes.STRING,
-      newClass: DataTypes.STRING,
-      holyNameFather: DataTypes.STRING,
-      fatherName: DataTypes.STRING,
-      holyNameMother: DataTypes.STRING,
-      motherName: DataTypes.STRING,
+      role_id: DataTypes.STRING,
+      holy_name: DataTypes.STRING,
+      holy_name_father: DataTypes.STRING,
+      father_name: DataTypes.STRING,
+      holy_name_mother: DataTypes.STRING,
+      mother_name: DataTypes.STRING,
     },
     {
       sequelize,
