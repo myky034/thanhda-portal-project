@@ -2,24 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('Allcodes', {
+        await queryInterface.createTable('Diligence_Case1', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            key: {
+            diligence_id: {
                 type: Sequelize.STRING
             },
-            type: {
-                type: Sequelize.STRING
+            is_reason: {
+                type: Sequelize.BOOLEAN
             },
-            value_en: {
-                type: Sequelize.STRING
-            },
-            value_vi: {
-                type: Sequelize.STRING
+            date: {
+                type: Sequelize.DATE
             },
             createdAt: {
                 type: Sequelize.DATE
@@ -30,6 +27,6 @@ module.exports = {
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('Allcodes');
+        await queryInterface.dropTable('Diligence_Case1');
     }
 };

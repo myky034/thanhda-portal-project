@@ -2,24 +2,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('Allcodes', {
+        await queryInterface.createTable('Diligence', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            key: {
+            semester_id: {
                 type: Sequelize.STRING
             },
-            type: {
-                type: Sequelize.STRING
-            },
-            value_en: {
-                type: Sequelize.STRING
-            },
-            value_vi: {
-                type: Sequelize.STRING
+            total_point: {
+                type: Sequelize.DECIMAL
             },
             createdAt: {
                 type: Sequelize.DATE
@@ -30,6 +24,6 @@ module.exports = {
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('Allcodes');
+        await queryInterface.dropTable('Diligence');
     }
 };

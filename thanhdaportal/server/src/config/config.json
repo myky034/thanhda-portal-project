@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
+    "password": "Khakhavnd@123",
     "database": "thanhdaportal_dev",
     "host": "127.0.0.1",
     "dialect": "mysql",

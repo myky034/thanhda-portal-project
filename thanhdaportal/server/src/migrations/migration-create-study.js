@@ -2,23 +2,35 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('Allcodes', {
+        await queryInterface.createTable('Study', {
             id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
             },
-            key: {
+            semester_id: {
                 type: Sequelize.STRING
             },
-            type: {
-                type: Sequelize.STRING
+            plus_point_1: {
+                type: Sequelize.DECIMAL
             },
-            value_en: {
-                type: Sequelize.STRING
+            coefficient_1: {
+                type: Sequelize.DECIMAL
             },
-            value_vi: {
+            plus_point_2: {
+                type: Sequelize.DECIMAL
+            },
+            coefficient_2: {
+                type: Sequelize.DECIMAL
+            },
+            coefficient_3: {
+                type: Sequelize.DECIMAL
+            },
+            average_score_result: {
+                type: Sequelize.DECIMAL
+            },
+            evaluate: {
                 type: Sequelize.STRING
             },
             createdAt: {
@@ -30,6 +42,6 @@ module.exports = {
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable('Allcodes');
+        await queryInterface.dropTable('Study');
     }
 };
