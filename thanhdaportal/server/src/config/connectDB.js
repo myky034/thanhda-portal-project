@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize')
 
 const sequelize = new Sequelize(
-    'thanhdaportal_dev', 'root', 'Khakhavnd@123',
+    'thanhdaportal_dev', 'root', 'password',
     {
         host: 'localhost',
         dialect: 'mysql',

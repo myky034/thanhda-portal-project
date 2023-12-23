@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Box, Container, CssBaseline } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Image from 'react-bootstrap/Image';
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Image from "react-bootstrap/Image";
 import Sidebar from "../../../../../components/SideBar/Sidebar";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -45,7 +45,7 @@ const EditStudent = () => {
     fatherName: "",
     holyNameMother: "",
     motherName: "",
-    image: ""
+    image: "",
   };
 
   const [students, setStudents] = useState(initialValues);
@@ -57,7 +57,10 @@ const EditStudent = () => {
 
     //GET method
     axios
-      .get("https://6520be0e906e276284c4a193.mockapi.io/thanhdaportal/students/" + id)
+      .get(
+        "https://6520be0e906e276284c4a193.mockapi.io/thanhdaportal/students/" +
+          id
+      )
       .then((res) => {
         setStudents(res.data);
         setisLoading(false);
@@ -104,7 +107,7 @@ const EditStudent = () => {
       fatherName: students.fatherName,
       holyNameMother: students.holyNameMother,
       motherName: students.motherName,
-      image: students.image
+      image: students.image,
     };
 
     //PUT method
@@ -127,7 +130,7 @@ const EditStudent = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3
+          p: 3,
         }}
       >
         <Box sx={{ height: "44px" }}>
@@ -135,10 +138,7 @@ const EditStudent = () => {
         </Box>
         <div style={{ marginBottom: "0.5rem" }}>
           <Breadcrumbs aria-label="breadcrumb">
-            <Link
-              to="/student"
-              className="breadcrumbLink"
-            >
+            <Link to="/student" className="breadcrumbLink">
               Thiếu Nhi
             </Link>
             <Link
@@ -159,7 +159,11 @@ const EditStudent = () => {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
-            <h2>{isAddMode ? "Thêm mới Thiếu Nhi" : "Chỉnh sửa thông tin Thiếu Nhi"}</h2>
+            <h2>
+              {isAddMode
+                ? "Thêm mới Thiếu Nhi"
+                : "Chỉnh sửa thông tin Thiếu Nhi"}
+            </h2>
           </div>
         </div>
         <CssBaseline />
@@ -180,12 +184,23 @@ const EditStudent = () => {
           >
             <Form className="form-student">
               <div style={{ display: "flex" }}>
-                <div style={{ width: "50rem", padding: "1rem" }}>
-                  <Form.Group className="mb-3" >
+                <div style={{ width: "25rem", padding: "1rem" }}>
+                  <Form.Group className="mb-3">
                     <Image src={students.image} rounded />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Tên Thánh</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Tên Thánh
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       name="holyName"
@@ -194,8 +209,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Họ</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput4"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Họ
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Họ"
@@ -204,8 +230,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Tên Lót</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput5"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Tên Lót
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Tên Lót"
@@ -214,8 +251,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Tên</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Tên
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Tên"
@@ -224,8 +272,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Ngày Sinh</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Ngày Sinh
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       name="birthday"
@@ -234,8 +293,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Giới Tính</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Giới Tính
+                    </Form.Label>
                     {["checkbox"].map((type) => (
                       <div key={`inline-${type}`} className="mb-3">
                         <Form.Check
@@ -265,9 +335,20 @@ const EditStudent = () => {
                     ))}
                   </Form.Group>
                 </div>
-                <div style={{ width: "50rem", padding: "1rem" }}>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Số Điện Thoại</Form.Label>
+                <div style={{ width: "25rem", padding: "1rem" }}>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Số Điện Thoại
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Số điện thoại"
@@ -280,7 +361,15 @@ const EditStudent = () => {
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1"
                   >
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Địa Chỉ</Form.Label>
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Địa Chỉ
+                    </Form.Label>
                     <Form.Control
                       as="textarea"
                       rows={3}
@@ -290,8 +379,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Thành Phố</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Thành Phố
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Thành phố"
@@ -300,8 +400,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Username</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput2"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Username
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       name="username"
@@ -310,8 +421,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Password</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput3"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Password
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Password"
@@ -320,8 +442,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Email</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Email
+                    </Form.Label>
                     <Form.Control
                       type="email"
                       name="email"
@@ -331,9 +464,20 @@ const EditStudent = () => {
                     />
                   </Form.Group>
                 </div>
-                <div style={{ width: "50rem", padding: "1rem" }}>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Ngày Rửa Tội</Form.Label>
+                <div style={{ width: "25rem", padding: "1rem" }}>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Ngày Rửa Tội
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       name="baptismDay"
@@ -342,8 +486,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Nơi Rửa Tội</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Nơi Rửa Tội
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Nơi Rửa Tội"
@@ -352,8 +507,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Tên Thánh Cha</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Tên Thánh Cha
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Tên Thánh Cha"
@@ -362,8 +528,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Họ Tên Cha</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Họ Tên Cha
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Họ Tên Cha"
@@ -372,8 +549,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Tên Thánh Mẹ</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Tên Thánh Mẹ
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Tên Thánh Mẹ"
@@ -382,8 +570,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Họ Tên Mẹ</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Họ Tên Mẹ
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Họ Tên Mẹ"
@@ -392,8 +591,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Lớp Cũ</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Lớp Cũ
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Lớp Cũ"
@@ -402,8 +612,19 @@ const EditStudent = () => {
                       onChange={handleInputChange}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "100%" }}>Lớp Mới</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "100%",
+                      }}
+                    >
+                      Lớp Mới
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Lớp Mới"
@@ -438,6 +659,6 @@ const EditStudent = () => {
       </Box>
     </Box>
   );
-}
+};
 
-export default EditStudent
+export default EditStudent;

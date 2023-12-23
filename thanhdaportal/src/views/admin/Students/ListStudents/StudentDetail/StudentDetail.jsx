@@ -90,7 +90,7 @@ const StudentDetail = () => {
         <Box sx={{ height: "44px" }}>
           <DrawerHeader />
         </Box>
-        <div style={{ marginBottom: "1rem" }}>
+        <div style={{ marginBottom: "0.5rem" }}>
           <Breadcrumbs aria-label="breadcrumb">
             <Link
               to="/student"
@@ -108,7 +108,7 @@ const StudentDetail = () => {
           </Breadcrumbs>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ marginBottom: "0.75rem" }}>
+          <div style={{ marginBottom: "0.5rem" }}>
             <h2>Thông tin chi tiết</h2>
           </div>
         </div>
@@ -130,7 +130,7 @@ const StudentDetail = () => {
           >
             <Form>
               <div style={{ display: "flex" }}>
-                <div style={{ width: "50rem", padding: "1rem" }}>
+                <div style={{ width: "30rem", padding: "1rem" }}>
                   <Form.Group className="mb-3" >
                     <Image src={students.image} rounded />
                   </Form.Group>
@@ -195,7 +195,7 @@ const StudentDetail = () => {
                     </Form.Label>
                   </Form.Group>
                 </div>
-                <div style={{ width: "50rem", padding: "1rem" }}>
+                <div style={{ width: "30rem", padding: "1rem" }}>
                   <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                     <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Username</Form.Label>
                     <Form.Label>{students.username}</Form.Label>
