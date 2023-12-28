@@ -32,7 +32,7 @@ const TableStudents = (props) => {
   //GET method
   const getStudents = async () => {
     await axios
-      .get("https://6520be0e906e276284c4a193.mockapi.io/thanhdaportal/students")
+      .get("https://65865716468ef171392e27e0.mockapi.io/thanhda/ms-user")
       .then((res) => {
         setStudents(res.data);
         setisLoading(false);
@@ -43,13 +43,10 @@ const TableStudents = (props) => {
       });
   };
 
-  // const sortStudents = [...student].sort((a, b) => a - b);
-  // console.log(sortStudents);
-
   //DELETE method
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:8080/api/ms-user/delete/?id=${id}`)
+      .delete(`https://65865716468ef171392e27e0.mockapi.io/thanhda/ms-user/delete/?id=${id}`)
       .then(function (res) {
         setStudents(res.data.users);
         console.log(res.data);
@@ -59,23 +56,6 @@ const TableStudents = (props) => {
         console.log(e);
       });
   };
-
-  // if (!student) {
-  //   return "No data found. Please click on button Add New";
-  // } else if (isLoading) {
-  //   return (
-  //     <div
-  //       className="spinner-loading"
-  //       style={{
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //       }}
-  //     >
-  //       <Spinner animation="border" />
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="table-responsive">
