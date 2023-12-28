@@ -26,24 +26,26 @@ const Login = () => {
 
   const handleLogin = () => {
 
-    let data = {
-      username: user.username,
-      password: user.password,
-    }
-    console.log("data===", data)
-    axios
-      .post("http://localhost:8080/api/login", data)
-      .then(function (res) {
-        setUser({
-          username: res.data.username,
-          password: res.data.password
-        })
-        console.log("Handle login post :", res.data)
-        navigate("/dashboard");
-      })
-      .catch((e) => {
-        console.log("Handle login error :", e)
-      })
+    navigate("/dashboard");
+
+    // let data = {
+    //   username: user.username,
+    //   password: user.password,
+    // }
+    // console.log("data===", data)
+    // axios
+    //   .post("http://localhost:8080/api/login", data)
+    //   .then(function (res) {
+    //     setUser({
+    //       username: res.data.username,
+    //       password: res.data.password
+    //     })
+    //     console.log("Handle login post :", res.data)
+    //     navigate("/dashboard");
+    //   })
+    //   .catch((e) => {
+    //     console.log("Handle login error :", e)
+    //   })
   }
   return (
     <div style={{ width: "100%" }}>
