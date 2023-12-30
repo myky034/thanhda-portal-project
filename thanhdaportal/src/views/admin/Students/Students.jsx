@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
 import "./Students.scss";
 import Sidebar from "../../../components/SideBar/Sidebar";
-import { Box } from "@mui/material";
+import { Box, Container, CssBaseline } from "@mui/material";
 //import { styled } from "@mui/material/styles";
 import TabBar from "../../../components/TabBar/TabBar";
 import { Dropdown, Button } from "react-bootstrap";
-import NewStudents from "./ListStudents/AddNewStu/NewStudents";
+import { Link } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 
 function simulateNetworkRequest() {
   return new Promise((resolve) => setTimeout(resolve, 2000));
 }
 
-const Students = () => {
-  // const DrawerHeader = styled("div")(({ theme }) => ({
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "flex-end",
-  //   padding: theme.spacing(0, 1),
-  //   // necessary for content to be below app bar
-  //   ...theme.mixins.toolbar,
-  // }));
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
 
+const Students = () => {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -34,19 +35,24 @@ const Students = () => {
   const handleClick = () => setLoading(true);
 
   return (
-    <Box className="students-box" component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <div style={{ display: "flex" }}>
+    <>
+      <Box sx={{ display: "flex" }}>
         <Sidebar />
-      </div>
-
-      <div
-        className="container-content container-student"
-        style={{ display: "grid" }}
-      >
-        <div className="student-contents">
-          <div className="header-student-page">
-            <h1 className="title-page-student">Thiếu Nhi</h1>
-            <div className="header-button-action">
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3
+          }}
+        >
+          <Box sx={{ height: "44px" }}>
+            <DrawerHeader />
+          </Box>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ marginBottom: "0.75rem" }}>
+              <h2>Thiếu Nhi</h2>
+            </div>
+            <div style={{ display: "flex", gap: "10px" }}>
               <div className="dropdown-semester">
                 <Dropdown>
                   <Dropdown.Toggle id="dropdown-basic">
@@ -55,14 +61,18 @@ const Students = () => {
 
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1">Học Kỳ II</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
-                      Cả Năm
-                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Cả Năm</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
-
-              <div className="doub-button">
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  height: "38px",
+                  maxHeight: "38xp",
+                }}
+              >
                 <Button
                   variant="primary"
                   disabled={isLoading}
@@ -81,18 +91,40 @@ const Students = () => {
                   {isLoading ? "Loading…" : "Import"}
                 </Button>
               </div>
-
               <div className="addNew-button button-modal">
-                <NewStudents />
+                <Link
+                  to="/addstudent"
+                  style={{ marginRight: "10px", width: "100%", height: "38px" }}
+                  variant="primary"
+                  className="btn btn-primary button-icon"
+                >
+                  Thêm mới
+                </Link>
               </div>
             </div>
           </div>
-          <div className="tab-bar-students">
-            <TabBar />
-          </div>
-        </div>
-      </div>
-    </Box>
+          <CssBaseline />
+          <Container
+            maxWidth="xl"
+            sx={{
+              margin: "0px",
+              paddingLeft: "0px !important",
+              paddingRight: "0px !important",
+            }}
+          >
+            <Box
+              sx={{
+                padding: "10px",
+                backgroundColor: "#FFFFFF",
+                borderRadius: "4px",
+              }}
+            >
+              <TabBar />
+            </Box>
+          </Container>
+        </Box>
+      </Box>
+    </>
   );
 };
 

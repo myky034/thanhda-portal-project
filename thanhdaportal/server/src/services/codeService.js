@@ -16,8 +16,6 @@ let getAllCodes = (inputType) => {
                 res = await db.Allcode.findAll({
                     where: { type: inputType }
                 })
-                res.errCode = 0
-                res.data
                 resolve(res)
             }
         } catch (e) {

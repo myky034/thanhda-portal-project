@@ -1,31 +1,28 @@
-import React, { useState, useEffect, useMemo } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { IoSquareOutline } from "react-icons/io5";
 import { IoIosEye } from "react-icons/io";
 import { FiTrash2, FiEdit } from "react-icons/fi";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import Spinner from "react-bootstrap/Spinner";
-import Pagination from "./../../../../components/Pagination/Pagination";
-
-let PageSize = 10;
+import { Link } from "react-router-dom";
+import TablePagination from '@mui/material/TablePagination';
+import "./TableStudents.css";
+import moment from "moment";
 
 const TableStudents = (props) => {
   const [isLoading, setisLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [students, setStudents] = useState([]);
+  const [student, setStudents] = useState([]);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const currentTableStudents = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return students.slice(firstPageIndex, lastPageIndex);
-  });
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
-  useMemo(() => {
-    window.scrollTo({ top: 0 });
-  }, [currentPage]);
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   useEffect(() => {
     setisLoading(true);
@@ -35,9 +32,9 @@ const TableStudents = (props) => {
   //GET method
   const getStudents = async () => {
     await axios
-      .get("http://localhost:8080/api/ms-user/all-users?id=ALL")
+      .get("https://65865716468ef171392e27e0.mockapi.io/thanhda/ms-user")
       .then((res) => {
-        setStudents(res.data.users);
+        setStudents(res.data);
         setisLoading(false);
         console.log(res.data);
       })
@@ -49,7 +46,7 @@ const TableStudents = (props) => {
   //DELETE method
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:8080/api/ms-user/delete/?id=${id}`)
+      .delete(`https://65865716468ef171392e27e0.mockapi.io/thanhda/ms-user/delete/?id=${id}`)
       .then(function (res) {
         setStudents(res.data.users);
         console.log(res.data);
@@ -60,28 +57,11 @@ const TableStudents = (props) => {
       });
   };
 
-  if (!students) {
-    return "No data found. Please click on button Add New";
-  } else if (isLoading) {
-    return (
-      <div
-        className="spinner-loading"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Spinner animation="border" />
-      </div>
-    );
-  }
   return (
-    <div>
+    <div className="table-responsive">
       <table className="table p-5 table-hover">
         <thead className="thead-dark">
           <tr>
-            {/* <th className="text-primar text-center" scope="col"></th> */}
             <th className="text-primar text-center" scope="col"></th>
             <th className="text-primar" scope="col">
               Tên Thánh
@@ -90,16 +70,13 @@ const TableStudents = (props) => {
               Họ Tên
             </th>
             <th className="text-primar" scope="col">
-              Giới Tính
-            </th>
-            <th className="text-primar" scope="col">
               Ngày Sinh
             </th>
             <th className="text-primar" scope="col">
-              Ngày Rửa Tội
+              Ngày RT
             </th>
             <th className="text-primar" scope="col">
-              Nơi Rửa Tội
+              Nơi RT
             </th>
             <th className="text-primar" scope="col">
               Địa Chỉ
@@ -115,11 +92,11 @@ const TableStudents = (props) => {
           </tr>
         </thead>
         <tbody>
-          {currentTableStudents &&
-            currentTableStudents.map((item, index) => {
+          {(rowsPerPage > 0 ? student.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : student &&
+            student).map((item) => {
               return (
                 <>
-                  <tr key={index} className="align-middle">
+                  <tr className="align-middle">
                     {/* <td>
                     <IoSquareOutline />
                   </td> */}
@@ -131,21 +108,24 @@ const TableStudents = (props) => {
                         <IoIosEye className="icon" />
                       </Link>
                     </td>
-                    <td>{item.holyName}</td>
-                    <td>
+                    <td className="text-primar">{item.holyName}</td>
+                    <td className="text-primar">
                       {item.lastName +
                         " " +
                         item.middleName +
                         " " +
                         item.firstName}
                     </td>
-                    <td>{item.gender}</td>
-                    <td>{item.birthday}</td>
-                    <td>{item.baptismDay}</td>
-                    <td>{item.baptismPlace}</td>
-                    <td>{item.address}</td>
-                    <td>{item.oldClass}</td>
-                    <td>{item.newClass}</td>
+                    <td className="text-primar">
+                      {moment(item.birthday).format("DD-MM-YYYY")}
+                    </td>
+                    <td className="text-primar">
+                      {moment(item.baptismDay).format("DD-MM-YYYY")}
+                    </td>
+                    <td className="text-primar">{item.baptismPlace}</td>
+                    <td className="text-primar">{item.address}</td>
+                    <td className="text-primar">{item.oldClass}</td>
+                    <td className="text-primar">{item.newClass}</td>
                     <td>
                       <Link
                         to={`/editstudent/${item.id}`}
@@ -155,13 +135,12 @@ const TableStudents = (props) => {
                       </Link>
                     </td>
                     <td>
-                      <Button
-                        variant="primary"
-                        // onClick={() => setShow(true)}
+                      <Link
                         onClick={() => handleDelete(item.id)}
+                        className="button-icon"
                       >
                         <FiTrash2 />
-                      </Button>
+                      </Link>
                     </td>
                   </tr>
                 </>
@@ -169,12 +148,13 @@ const TableStudents = (props) => {
             })}
         </tbody>
       </table>
-      <Pagination
-        className="pagination-bar"
-        currentPage={currentPage}
-        totalCount={students.length}
-        pageSize={PageSize}
-        onPageChange={(page) => setCurrentPage(page)}
+      <TablePagination
+        component="div"
+        count={100}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </div>
   );

@@ -14,6 +14,9 @@ import StudentDetail from "./views/admin/Students/ListStudents/StudentDetail/Stu
 import Login from "./views/login/Login";
 import EditStudent from "./views/admin/Students/ListStudents/EditStudent/EditStudent";
 import ScrollToTop from "./components/ScrollToTop";
+import NewStudents from "./views/admin/Students/ListStudents/AddNewStu/NewStudents";
+import NewTeacher from "./views/admin/Teachers/NewTeacher/NewTeacher";
+import TeacherDetail from "./views/admin/Teachers/TeachersDetail/TeacherDetail";
 
 function App() {
   return (
@@ -27,10 +30,13 @@ function App() {
             <Route path="/student" element={<Students />} />
             <Route path="/parent" element={<Parents />} />
             <Route path="/teacher" element={<Teachers />} />
+            <Route path="/addteacher" element={<NewTeacher/>} />
+            <Route path="/teacherdetail" element={<TeacherDetail />} />
             <Route path="/statistic" element={<Statistics />} />
             <Route path="/setting" element={<Settings />} />
             <Route path="/studentdetail/:id" element={<StudentDetail />} />
             <Route path="/editstudent/:id" element={<EditStudent />} />
+            <Route path="/addstudent" element={<NewStudents />} />
           </Routes>
         </div>
       </Router>

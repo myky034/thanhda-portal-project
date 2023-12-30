@@ -1,9 +1,9 @@
 import userService from '../services/userService'
+// const readXlsxFile = require("read-excel-file")
 
 
 let handleLogin = async (req, res) => {
-    let username = req.body.username
-    let password = req.body.password
+    let { username, password } = req.body
 
     if (!username || !password) {
         return res.status(500).json({
@@ -41,7 +41,6 @@ let handleGetAllUsers = async (req, res) => {
 
 let handleCreateUser = async (req, res) => {
     let message = await userService.createNewUser(req.body)
-    console.log(message)
     return res.status(200).json(message)
 }
 
@@ -82,12 +81,43 @@ let handleGetAllCodes = async (req, res) => {
         })
     }
 }
+// let handleUpLoadFile = async (req, res) => {
 
+//     try {
+//         if (req.file === undefined) {
+//             return res.status(400).json({
+//                 Code: 1,
+//                 Messsage: 'Please upload an excel file!'
+//             })
+//         }
+
+//         let path = __dirname + "/.." + "/static/assets/uploads/" + req.file.filename
+//         readXlsxFile("E:/Learn/thanhda-portal-project/thanhdaportal/server/src/static/assets/uploads/1689314000422-bezkoder-Book1.xlsx")
+//             .then(() => {
+//                 return res.status(200).json({
+//                     message: "ok"
+//                 })
+//             })
+//         console.log(path)
+
+
+//         // workbook.xlsx.readFile(file_name)
+//         //     .then(function () {
+//         //         let worksheet = workbook.getWorksheet();
+//         //         worksheet.eachRow({ includeEmpty: true }, function (row, rowNumber) {
+//         //             console.log("Row " + rowNumber + " = " + JSON.stringify(row.values))
+//         //         })
+//         //     })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 module.exports = {
     handleLogin,
     handleGetAllUsers,
     handleCreateUser,
     handleEditUser,
     handleDeleteUser,
-    handleGetAllCodes,
+    handleGetAllCodes
+    // handleUpLoadFile,
 }

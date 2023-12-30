@@ -9,13 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      firstName: {
+      first_name: {
         type: Sequelize.STRING,
       },
-      middleName: {
+      middle_name: {
         type: Sequelize.STRING,
       },
-      lastName: {
+      last_name: {
         type: Sequelize.STRING,
       },
       username: {
@@ -33,55 +33,47 @@ module.exports = {
       city: {
         type: Sequelize.STRING,
       },
-      baptismDay: {
+      baptism_day: {
         type: Sequelize.STRING,
       },
-      baptismPlace: {
+      baptism_place: {
         type: Sequelize.STRING,
       },
       address: {
         type: Sequelize.STRING,
       },
       gender: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
       },
-      phoneNumber: {
+      phone_number: {
         type: Sequelize.STRING,
       },
       image: {
         type: Sequelize.STRING,
       },
-      roleId: {
+      role_id: {
         type: Sequelize.STRING,
       },
-      holyName: {
+      holy_name: {
         type: Sequelize.STRING,
       },
-      oldClass: {
+      holy_name_father: {
         type: Sequelize.STRING,
       },
-      newClass: {
+      father_name: {
         type: Sequelize.STRING,
       },
-      holyNameFather: {
+      holy_name_mother: {
         type: Sequelize.STRING,
       },
-      fatherName: {
-        type: Sequelize.STRING,
-      },
-      holyNameMother: {
-        type: Sequelize.STRING,
-      },
-      motherName: {
+      mother_name: {
         type: Sequelize.STRING,
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
     });
   },

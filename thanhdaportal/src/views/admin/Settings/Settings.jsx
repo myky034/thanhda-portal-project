@@ -73,11 +73,13 @@ const Settings = () => {
       <Box sx={{ display: "flex" }}>
         <Sidebar />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Box sx={{ height: "34px" }}>
+          <Box sx={{ height: "44px" }}>
             <DrawerHeader />
           </Box>
           <div>
-            <h1>Settings</h1>
+            <div style={{ marginBottom: "1rem" }}>
+              <h2>Settings</h2>
+            </div>
             <CssBaseline />
             <Container
               fixed
@@ -87,7 +89,13 @@ const Settings = () => {
                 paddingRight: "0px !important",
               }}
             >
-              <Box sx={{ padding: "10px", backgroundColor: "#FFFFFF", borderRadius: "4px" }}>
+              <Box
+                sx={{
+                  padding: "10px",
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: "4px",
+                }}
+              >
                 <TabContext value={value} sx={{ height: "100vh" }}>
                   <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                     <TabList

@@ -1,9 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.scss";
 import "./Login.css";
 import bg from '../../assets/images/bg_1.jpg';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 const Login = () => {
+  const navigate = useNavigate();
+  const initialValues = {
+    username: "",
+    password: "",
+    first_name: "",
+    middle_name: "",
+    last_name: ""
+  }
+
+  const [user, setUser] = useState(initialValues);
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleLogin = () => {
+
+    navigate("/dashboard");
+
+    // let data = {
+    //   username: user.username,
+    //   password: user.password,
+    // }
+    // console.log("data===", data)
+    // axios
+    //   .post("http://localhost:8080/api/login", data)
+    //   .then(function (res) {
+    //     setUser({
+    //       username: res.data.username,
+    //       password: res.data.password
+    //     })
+    //     console.log("Handle login post :", res.data)
+    //     navigate("/dashboard");
+    //   })
+    //   .catch((e) => {
+    //     console.log("Handle login error :", e)
+    //   })
+  }
   return (
     <div style={{ width: "100%" }}>
       <div class="d-lg-flex half">
@@ -34,6 +77,9 @@ const Login = () => {
                       class="form-control"
                       placeholder="your-email@gmail.com"
                       id="username"
+                      name="username"
+                      value={user.username}
+                      onChange={handleInputChange}
                     />
                   </div>
                   <div
@@ -48,6 +94,9 @@ const Login = () => {
                       class="form-control"
                       placeholder="Your Password"
                       id="password"
+                      name="password"
+                      value={user.password}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -65,10 +114,11 @@ const Login = () => {
                   </div> */}
 
                   <input
-                    type="submit"
+                    type="button"
                     value="Log In"
                     class="btn btn-block btn-primary"
                     style={{ width: "100%" }}
+                    onClick={handleLogin}
                   />
                 </form>
               </div>
