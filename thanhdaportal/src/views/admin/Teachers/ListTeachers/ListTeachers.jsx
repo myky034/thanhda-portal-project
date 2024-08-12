@@ -1,12 +1,44 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import "../Teachers.scss";
 import axios from "axios";
-import { IoIosEye } from "react-icons/io";
 import { IoSquareOutline } from "react-icons/io5";
-import { FiTrash2, FiEdit } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import TablePagination from "@mui/material/TablePagination";
+import Avatar from "@mui/material/Avatar";
 import moment from "moment";
+import CustomizedCheckbox from "./../../../../components/Checkbox";
+import BasicMenu from "../../../../components/MenuContext";
+
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = "#";
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+  };
+}
 
 const ListTeachers = (props) => {
   const [isLoading, setisLoading] = useState(false);
@@ -22,6 +54,11 @@ const ListTeachers = (props) => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
   };
 
   useEffect(() => {
@@ -60,32 +97,43 @@ const ListTeachers = (props) => {
   };
 
   return (
-    <div className="table-responsive">
-      <table className="table p-5 table-hover">
-        <thead className="thead-dark">
+    <div className='table-responsive'>
+      <table className='table p-5 table-hover'>
+        <thead className='thead-dark'>
           <tr>
-            <th className="text-primar" scope="col"></th>
-            <th className="text-primar text-center" scope="col"></th>
-            <th className="text-primar" scope="col">
-              Tên Thánh
+            <th
+              className='text-primar'
+              scope='col'>
+              <CustomizedCheckbox />
             </th>
-            <th className="text-primar" scope="col">
-              Họ Tên
+            <th
+              className='text-primar'
+              scope='col'>
+              Name
             </th>
-            <th className="text-primar" scope="col">
-              Số Điện Thoại
+            <th
+              className='text-primar'
+              scope='col'>
+              Teacher ID
             </th>
-            <th className="text-primar" scope="col">
-              Ngày Bổn Mạng
+            <th
+              className='text-primar'
+              scope='col'>
+              Class
             </th>
-            <th className="text-primar" scope="col">
-              GLV Lớp
+            <th
+              className='text-primar'
+              scope='col'>
+              Department
             </th>
-            <th className="text-primar" scope="col">
-              Khối
+            <th
+              className='text-primar'
+              scope='col'>
+              Status
             </th>
-            <th className="text-primar" scope="col"></th>
-            <th className="text-primar" scope="col"></th>
+            <th
+              className='text-primar'
+              scope='col'></th>
           </tr>
         </thead>
         <tbody>
@@ -98,48 +146,58 @@ const ListTeachers = (props) => {
           ).map((item) => {
             return (
               <>
-                <tr className="align-middle">
+                <tr className='align-middle'>
                   <td>
-                    <IoSquareOutline />
+                    <CustomizedCheckbox />
                   </td>
-                  <td>
-                    <Link
-                      to={`/teacherdetail/${item.id}`}
-                      className="button-icon"
-                    >
-                      <IoIosEye className="icon" />
-                    </Link>
+                  <td className='text-primar'>
+                    <div className='column-name'>
+                      <div className='column-name user-avatar'>
+                        <Avatar
+                          {...stringAvatar("Kent Dodds")}
+                          style={{ margin: "0px 10px 0px 0px" }}
+                        />
+                      </div>
+                      <div className='column-name user-name'>
+                        <div className='fullname'>
+                          {item.holy_name +
+                            item.last_name +
+                            " " +
+                            " " +
+                            item.first_name}
+                        </div>
+                        <div className='email'>{item.email}</div>
+                      </div>
+                    </div>
                   </td>
-                  <td className="text-primar">{item.holyName}</td>
-                  <td className="text-primar">
-                    {item.lastName +
-                      " " +
-                      item.middleName +
-                      " " +
-                      item.firstName}
+                  <td className='text-primar'>
+                    <span className='badge sub-id'>{"#" + item.id}</span>
                   </td>
-                  <td className="text-primar">{item.phone}</td>
-                  <td className="text-primar">
-                    {moment(item.baptismDay).format("DD-MM-YYYY")}
+                  <td className='text-primar'>
+                    <div className='column-name user-name'>
+                      <div className='fullname'>{item.className}</div>
+                      <div className='email'>Official</div>
+                    </div>
                   </td>
-                  <td className="text-primar">{item.class}</td>
-                  <td className="text-primar">{item.deparment}</td>
-                  <td>
-                    <Link
-                      to={`/editstudent/${item.id}`}
-                      className="button-icon"
-                    >
-                      <FiEdit className="icon" />
-                    </Link>
+                  <td className='text-primar'>
+                    <span className='badge sub-id'>{item.department}</span>
                   </td>
-                  <td>
+                  <td className='text-primar'>
+                    <div className='badge sub-status'>
+                      <span className='dot-status'></span>
+                      <span>Active</span>
+                    </div>
+                  </td>
+                  <td className='column-actions'>
+                    <BasicMenu />
+                  </td>
+                  {/* <td>
                     <Link
                       onClick={() => handleDelete(item.id)}
-                      className="button-icon"
-                    >
+                      className='button-icon'>
                       <FiTrash2 />
                     </Link>
-                  </td>
+                  </td> */}
                 </tr>
               </>
             );
@@ -147,7 +205,7 @@ const ListTeachers = (props) => {
         </tbody>
       </table>
       <TablePagination
-        component="div"
+        component='div'
         count={100}
         page={page}
         onPageChange={handleChangePage}

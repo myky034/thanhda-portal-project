@@ -1,12 +1,13 @@
-import React from 'react';
-import './SearchBar.scss';
+import React from "react";
+import "./SearchBar.scss";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import { FiSearch } from "react-icons/fi";
+import icon_search from "../../../assets/images/Search.png";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: "10px",
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -35,32 +36,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
   },
 }));
 
 const SearchBar = () => {
   return (
-    <div>
-      <Search className="search-appbar">
-        <SearchIconWrapper className="search-appbar-icon">
-          <FiSearch className="search-icon" />
+    <div className='search'>
+      <Search className='search-appbar'>
+        <SearchIconWrapper className='search-appbar-icon'>
+          <img
+            src={icon_search}
+            alt='Logo Churchity'
+          />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Search…"
+          placeholder='Search by name, role, ID or any related keywords'
           inputProps={{ "aria-label": "search" }}
           className='search-input'
         />
       </Search>
     </div>
   );
-}
+};
 
-export default SearchBar
+export default SearchBar;

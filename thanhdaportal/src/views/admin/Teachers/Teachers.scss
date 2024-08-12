@@ -3,8 +3,113 @@
     min-height: 30px;
   }
 
-  .container-content{
+  .container-content {
     max-height: max-content;
     overflow: hidden;
+  }
+}
+
+.overview {
+  &-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .badge {
+      &.sub-total {
+        background-color: #ddd;
+        border-radius: 12px;
+        height: 22px;
+        width: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #93312b;
+      }
+    }
+  }
+}
+
+.table-responsive {
+  thead {
+    tr {
+      th {
+        border-bottom-color: #eaecf0;
+        font-size: 14px;
+        align-content: center;
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        padding: 16px 6px;
+        font-size: 14px;
+        border-bottom-color: #eaecf0;
+        text-wrap: wrap;
+
+        .badge {
+          &.sub {
+            &-id {
+              background-color: #f5f6f7;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              color: #091e42;
+              padding: 5px 10px;
+              font-size: 14px;
+              width: fit-content;
+            }
+
+            &-status {
+              background-color: #ecfdf3;
+              border-radius: 12px;
+              display: flex;
+              align-items: center;
+              color: #027a48;
+              padding: 5px 10px;
+              font-size: 14px;
+              width: fit-content;
+              font-weight: 400;
+
+              .dot-status {
+                display: block;
+                height: 7px;
+                width: 7px;
+                background-color: #12b76a;
+                border-radius: 50%;
+                margin: 0 5px 0 0;
+              }
+            }
+          }
+        }
+
+        .column-name {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+
+          &.user {
+            &-name {
+              display: grid;
+              align-content: space-between;
+              .fullname {
+                font-weight: 600;
+              }
+
+              .email {
+                font-style: italic;
+                font-size: 13px;
+                color: #6b788e;
+              }
+            }
+          }
+        }
+
+        .column-actions {
+          text-align: right;
+        }
+      }
+    }
   }
 }

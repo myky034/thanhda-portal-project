@@ -1,28 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SideBar.scss";
-import { useNavigate, Link, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import logo_sidebar from "../../assets/images/logo-sidebar.png";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-import { FiMenu } from "react-icons/fi";
-import { HiHome } from "react-icons/hi";
 import {
-  FaUserGraduate,
-  FaUserFriends,
-  FaUserTie,
-  FaChartPie,
-  FaCog,
-} from "react-icons/fa";
+  TbTemplate,
+  TbCertificate,
+  TbChartDonut,
+  TbSettings,
+  TbUsers,
+  TbUserCircle,
+  TbLayoutDashboard,
+  TbBellRinging,
+} from "react-icons/tb";
+import Avatar from "@mui/material/Avatar";
 import SearchBar from "./Search/SearchBar";
 
 const drawerWidth = 240;
@@ -92,9 +93,38 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = "#";
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+  };
+}
+
 const Sidebar = () => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
@@ -108,265 +138,317 @@ const Sidebar = () => {
   return (
     <div>
       <CssBaseline />
-      <AppBar className="appbar-sidebar" position="fixed" open={open}>
-        <Toolbar className="appbar-toolbar">
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: "none" }),
-            }}
-            className="appbar-icon-button"
-          >
-            <FiMenu className="appbar-icon-hambuger" />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "block" },
-              fontFamily: "Quicksand, sans-serif",
-            }}
-          >
-            Thanh Da Portal
-          </Typography>
+      <AppBar
+        className='appbar-sidebar'
+        position='fixed'
+        open={open}>
+        <Toolbar className='appbar-toolbar'>
           <SearchBar />
+          <div className='appbar-toolbar actions'>
+            <IconButton className='button-icons'>
+              <TbSettings className='icons' />
+            </IconButton>
+            <IconButton className='button-icons'>
+              <TbBellRinging className='icons' />
+            </IconButton>
+            <Avatar
+              {...stringAvatar("Kent Dodds")}
+              style={{ margin: "0px 0px 0px 10px" }}
+            />
+          </div>
         </Toolbar>
       </AppBar>
-      <Drawer className="drawer-header" variant="permanent" open={open}>
-        <DrawerHeader className="drawer-header-sidebar">
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? <BsChevronRight /> : <BsChevronLeft />}
-          </IconButton>
-        </DrawerHeader>
-        <List className="sidebar-menu">
+      <Drawer
+        className='drawer-header'
+        variant='permanent'
+        open={open}>
+        <List className='sidebar-menu'>
           <NavLink
-            className="sidebar-link"
-            activeClassName="active"
-            to="/dashboard"
-          >
+            className='sidebar-logo'
+            to='/dashboard'>
             <ListItem
               disablePadding
               sx={{ display: "block" }}
-              onClick={() => {
-                navigate("/dashboard");
-              }}
-              className="sidebar-link-item"
-            >
+              className='sidebar-link-item'>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-                className="sidebar-item-button"
-              >
+                className='sidebar-item-button no-hover'>
+                <div
+                  className='login-logo'
+                  style={{ width: "100%" }}>
+                  <img
+                    src={logo_sidebar}
+                    alt='Logo Churchity'
+                    style={{ width: "10em" }}
+                  />
+                </div>
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+            activeClassName='active'
+            to='/dashboard'>
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              className='sidebar-link-item'>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                  transition: "all .5s ease",
+                  WebkitTransition: "all .5s ease",
+                  MozTransition: "all .5s ease",
+                }}
+                className='sidebar-item-button'>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                   }}
-                  className="sidebar-item-icon"
-                >
-                  <HiHome className="icons" />
+                  className='sidebar-item-icon'>
+                  <TbLayoutDashboard className='icons' />
                 </ListItemIcon>
                 <ListItemText
-                  className="sidebar-link sidebar-text"
-                  primary="Dashboard"
+                  className='sidebar-text'
+                  primary='Dashboard'
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
           </NavLink>
 
-          <Link className="sidebar-link" to="/student">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+            to='/teacher'
+            activeClassName='active'>
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              className='sidebar-link-item'>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+                className='sidebar-item-button'
+                button>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                  className='sidebar-item-icon'>
+                  <TbUsers className='icons' />
+                </ListItemIcon>
+                <ListItemText
+                  className='sidebar-link sidebar-text'
+                  primary='Teacher'
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+            to='/student'>
             <ListItem
               disablePadding
               sx={{ display: "block" }}
               onClick={() => {
                 navigate("/student");
               }}
-              className="sidebar-link-item"
-            >
+              className='sidebar-link-item'>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-                className="sidebar-item-button"
-              >
+                className='sidebar-item-button'>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                   }}
-                  className="sidebar-item-icon"
-                >
-                  <FaUserGraduate className="icons" />
+                  className='sidebar-item-icon'>
+                  <TbUserCircle className='icons' />
                 </ListItemIcon>
                 <ListItemText
-                  className="sidebar-link sidebar-text"
-                  primary="Student"
+                  className='sidebar-link sidebar-text'
+                  primary='Student'
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </NavLink>
 
-          <Link className="sidebar-link" to="/parent">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+            to='/student'>
             <ListItem
               disablePadding
               sx={{ display: "block" }}
               onClick={() => {
-                navigate("/parent");
+                navigate("/student");
               }}
-              className="sidebar-link-item"
-            >
+              className='sidebar-link-item'>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-                className="sidebar-item-button"
-              >
+                className='sidebar-item-button'>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                   }}
-                  className="sidebar-item-icon"
-                >
-                  <FaUserFriends className="icons" />
+                  className='sidebar-item-icon'>
+                  <TbCertificate className='icons' />
                 </ListItemIcon>
                 <ListItemText
-                  className="sidebar-link sidebar-text"
-                  primary="Parent"
+                  className='sidebar-link sidebar-text'
+                  primary='Scoreboard'
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </NavLink>
 
-          <Link className="sidebar-link" to="/teacher">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+            to='/student'>
             <ListItem
               disablePadding
               sx={{ display: "block" }}
               onClick={() => {
-                navigate("/teacher");
+                navigate("/student");
               }}
-              className="sidebar-link-item"
-            >
+              className='sidebar-link-item'>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-                className="sidebar-item-button"
-              >
+                className='sidebar-item-button'>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                   }}
-                  className="sidebar-item-icon"
-                >
-                  <FaUserTie className="icons" />
+                  className='sidebar-item-icon'>
+                  <TbTemplate className='icons' />
                 </ListItemIcon>
                 <ListItemText
-                  className="sidebar-link sidebar-text"
-                  primary="Teacher"
+                  className='sidebar-link sidebar-text'
+                  primary='Event Management'
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </NavLink>
 
-          <Link className="sidebar-link" to="/statistic">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+            to='/statistic'>
             <ListItem
               disablePadding
               sx={{ display: "block" }}
               onClick={() => {
                 navigate("/statistic");
               }}
-              className="sidebar-link-item"
-            >
+              className='sidebar-link-item'>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-                className="sidebar-item-button"
-              >
+                className='sidebar-item-button'>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                   }}
-                  className="sidebar-item-icon"
-                >
-                  <FaChartPie className="icons" />
+                  className='sidebar-item-icon'>
+                  <TbChartDonut className='icons' />
                 </ListItemIcon>
                 <ListItemText
-                  className="sidebar-link sidebar-text"
-                  primary="Statistic"
+                  className='sidebar-link sidebar-text'
+                  primary='Report'
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </NavLink>
 
-          <Link className="sidebar-link" to="/setting">
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+            to='/setting'>
             <ListItem
               disablePadding
               sx={{ display: "block" }}
               onClick={() => {
                 navigate("/setting");
               }}
-              className="sidebar-link-item"
-            >
+              className='sidebar-link-item'>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-                className="sidebar-item-button"
-              >
+                className='sidebar-item-button'>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                   }}
-                  className="sidebar-item-icon"
-                >
-                  <FaCog className="icons" />
+                  className='sidebar-item-icon'>
+                  <TbSettings className='icons' />
                 </ListItemIcon>
                 <ListItemText
-                  className="sidebar-link sidebar-text"
-                  primary="Setting"
+                  className='sidebar-link sidebar-text'
+                  primary='Setting'
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
-          </Link>
+          </NavLink>
         </List>
-        {/* <Divider />
-          <Divider /> */}
       </Drawer>
     </div>
   );

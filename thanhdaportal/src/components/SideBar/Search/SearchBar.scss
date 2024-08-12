@@ -1,0 +1,13 @@
+.search {
+  width: 50%;
+  &-appbar {
+    border: 1px solid #eff1f4;
+    border-radius: 10px;
+
+    .search-input {
+      color: #333333;
+      width: 100%;
+      font-size: 14px;
+    }
+  }
+}

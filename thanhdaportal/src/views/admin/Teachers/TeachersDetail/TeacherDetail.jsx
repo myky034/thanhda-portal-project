@@ -4,9 +4,9 @@ import { Box, Container, CssBaseline } from "@mui/material";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Image from 'react-bootstrap/Image';
+import Image from "react-bootstrap/Image";
 import { styled } from "@mui/material/styles";
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Breadcrumbs from "@mui/material/Breadcrumbs";
 import moment from "moment";
 import Sidebar from "../../../../components/SideBar/Sidebar";
 
@@ -20,22 +20,35 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const TeachersDetail = () => {
-
   const { id } = useParams();
   const navigate = useNavigate();
   const initialValues = {
     id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    password: "",
-    class: "",
-    deparment: "",
-    baptismDay: "",
-    holyName: "",
+    teacherCode: "",
+    holy_name: "",
+    first_name: "",
+    last_name: "",
+    baptism_date: "",
+    department: "",
+    job_title: "",
+    job_position: "",
+    team: "",
+    religious_order: "",
+    diocese: "",
+    className: "",
     gender: "",
-    image: ""
+    phone: "",
+    email: "",
+    username: "",
+    password: "",
+    image: "",
+    isActive: "",
+    lastLogin: "",
+    note: "",
+    createdBy: "",
+    createdDate: "",
+    updatedBy: "",
+    updatedDate: "",
   };
 
   const [teacher, setTeacher] = useState(initialValues);
@@ -47,7 +60,9 @@ const TeachersDetail = () => {
 
     //GET method
     axios
-      .get("https://65865716468ef171392e27e0.mockapi.io/thanhda/ms-teachers/" + id)
+      .get(
+        "https://65865716468ef171392e27e0.mockapi.io/thanhda/ms-teachers/" + id
+      )
       .then((res) => {
         setTeacher(res.data);
         setisLoading(false);
@@ -57,7 +72,7 @@ const TeachersDetail = () => {
         setisLoading(true);
         console.log(error);
       });
-  }, []);
+  });
 
   const handleClose = () => {
     setTeacher(initialValues);
@@ -72,7 +87,7 @@ const TeachersDetail = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3
+          p: 3,
         }}
       >
         <Box sx={{ height: "44px" }}>
@@ -80,14 +95,11 @@ const TeachersDetail = () => {
         </Box>
         <div style={{ marginBottom: "0.5rem" }}>
           <Breadcrumbs aria-label="breadcrumb">
-            <Link
-              to="/student"
-              className="breadcrumbLink"
-            >
+            <Link to="/teacher" className="breadcrumbLink">
               Giáo Lý Viên
             </Link>
             <Link
-              to={`/studentdetail/${teacher.id}`}
+              to={`/teacherdetail/${teacher.id}`}
               aria-current="page"
               className="breadcrumbLink"
             >
@@ -119,27 +131,58 @@ const TeachersDetail = () => {
             <Form>
               <div style={{ display: "flex" }}>
                 <div style={{ width: "30rem", padding: "1rem" }}>
-                  <Form.Group className="mb-3" >
+                  <Form.Group className="mb-3">
                     <Image src={teacher.image} rounded />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Tên Thánh</Form.Label>
-                    <Form.Label>{teacher.holyName}</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Tên Thánh
+                    </Form.Label>
+                    <Form.Label>{teacher.holy_name}</Form.Label>
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label className="title-info" style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Họ Tên</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      className="title-info"
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Họ Tên
+                    </Form.Label>
                     <Form.Label>
-                      {teacher.lastName + " "}
-                      {teacher.middleName + " "}
-                      {teacher.firstName}
+                      {teacher.last_name + " "}
+                      {teacher.first_name}
                     </Form.Label>
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Ngày Bổn Mạng</Form.Label>
-                    <Form.Label>{moment(teacher.baptismDay).format("DD-MM-YYYY")}</Form.Label>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" style={{ display: "flex" }}>
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Giới Tính</Form.Label>
+
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                    style={{ display: "flex" }}
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Giới Tính
+                    </Form.Label>
                     {["checkbox"].map((type) => (
                       <div key={`inline-${type}`} className="mb-3">
                         <Form.Check
@@ -168,31 +211,176 @@ const TeachersDetail = () => {
                       </div>
                     ))}
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Số Điện Thoại</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      className="title-info"
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Số điện thoại
+                    </Form.Label>
                     <Form.Label>{teacher.phone}</Form.Label>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      className="title-info"
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Email
+                    </Form.Label>
+                    <Form.Label>{teacher.email}</Form.Label>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Ngày Bổn Mạng
+                    </Form.Label>
+                    <Form.Label>
+                      {moment(teacher.baptism_date).format("DD-MM-YYYY")}
+                    </Form.Label>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Lớp
+                    </Form.Label>
+                    <Form.Label>{teacher.className}</Form.Label>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Khối
+                    </Form.Label>
+                    <Form.Label>{teacher.department}</Form.Label>
                   </Form.Group>
                 </div>
                 <div style={{ width: "30rem", padding: "1rem" }}>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Username</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput2"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Chức vụ
+                    </Form.Label>
+                    <Form.Label>{teacher.job_title}</Form.Label>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput3"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Chức danh
+                    </Form.Label>
+                    <Form.Label>{teacher.job_position}</Form.Label>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Ban
+                    </Form.Label>
+                    <Form.Label>{teacher.team}</Form.Label>
+                  </Form.Group>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Username
+                    </Form.Label>
                     <Form.Label>{teacher.username}</Form.Label>
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Password</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Password
+                    </Form.Label>
                     <Form.Label>{teacher.password}</Form.Label>
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Email</Form.Label>
-                    <Form.Label>{teacher.email}</Form.Label>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Lớp Cũ</Form.Label>
-                    <Form.Label>{teacher.deparment}</Form.Label>
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label style={{ fontWeight: "600", marginRight: "2em", width: "7em" }}>Lớp Mới</Form.Label>
-                    <Form.Label>{teacher.class}</Form.Label>
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label
+                      style={{
+                        fontWeight: "600",
+                        marginRight: "2em",
+                        width: "7em",
+                      }}
+                    >
+                      Khu giáo
+                    </Form.Label>
+                    <Form.Label>{teacher.diocese}</Form.Label>
                   </Form.Group>
                 </div>
               </div>

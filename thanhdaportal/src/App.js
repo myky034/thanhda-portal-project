@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import "./App.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./views/admin/DashBoard/Dashboard";
 import Students from "./views/admin/Students/Students";
@@ -23,20 +24,56 @@ function App() {
     <Provider store={store}>
       <Router>
         <ScrollToTop />
-        <div className="App">
+        <div className='App'>
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/student" element={<Students />} />
-            <Route path="/parent" element={<Parents />} />
-            <Route path="/teacher" element={<Teachers />} />
-            <Route path="/addteacher" element={<NewTeacher/>} />
-            <Route path="/teacherdetail" element={<TeacherDetail />} />
-            <Route path="/statistic" element={<Statistics />} />
-            <Route path="/setting" element={<Settings />} />
-            <Route path="/studentdetail/:id" element={<StudentDetail />} />
-            <Route path="/editstudent/:id" element={<EditStudent />} />
-            <Route path="/addstudent" element={<NewStudents />} />
+            <Route
+              path='/'
+              element={<Login />}
+            />
+            <Route
+              path='/dashboard'
+              element={<Dashboard />}
+            />
+            <Route
+              path='/student'
+              element={<Students />}
+            />
+            <Route
+              path='/parent'
+              element={<Parents />}
+            />
+            <Route
+              path='/teacher'
+              element={<Teachers />}
+            />
+            <Route
+              path='/addteacher'
+              element={<NewTeacher />}
+            />
+            <Route
+              path='/teacherdetail/:id'
+              element={<TeacherDetail />}
+            />
+            <Route
+              path='/statistic'
+              element={<Statistics />}
+            />
+            <Route
+              path='/setting'
+              element={<Settings />}
+            />
+            <Route
+              path='/studentdetail/:id'
+              element={<StudentDetail />}
+            />
+            <Route
+              path='/editstudent/:id'
+              element={<EditStudent />}
+            />
+            <Route
+              path='/addstudent'
+              element={<NewStudents />}
+            />
           </Routes>
         </div>
       </Router>

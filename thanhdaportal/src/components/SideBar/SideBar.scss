@@ -11,15 +11,40 @@
 }
 
 .appbar-sidebar {
-  height: 48px;
+  height: 60px;
   justify-content: center;
-  // background-color: #1976d2 !important;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+  background-color: #fff !important;
+  box-shadow: none !important;
 
   .appbar-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     .appbar-icon-button {
       .appbar-icon-hambuger {
-        color: #FFF;
+        color: #fff;
+      }
+    }
+
+    &.actions {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+
+      .button-icons:hover,
+      :focus,
+      :active {
+        background-color: transparent;
+        span {
+          position: relative;
+        }
+      }
+
+      .button-icons {
+        .icons {
+          margin: 5px;
+        }
       }
     }
   }
@@ -35,7 +60,8 @@
   }
 
   .sidebar-menu {
-    .sidebar-link {
+    .sidebar-link,
+    .sidebar-logo {
       text-decoration: none;
       color: rgba(0, 0, 0, 0.54);
 
@@ -44,29 +70,64 @@
           align-items: center;
           justify-content: center;
           margin: 7px;
-          border-radius: 5px;
+          border-radius: 8px;
+
+          &.no-hover {
+            .MuiTouchRipple-root {
+              position: relative;
+            }
+          }
+
+          &.no-hover:hover,
+          :focus,
+          :active {
+            background-color: transparent;
+          }
 
           .sidebar-item-icon {
+            margin-right: 16px;
             .icons {
               width: 20px;
               height: 20px;
             }
           }
-        }
 
-        .sidebar-text {
-          span {
-            font-family: "Quicksand", sans-serif;
-            font-weight: 600;
+          .sidebar-text {
+            span {
+              font-weight: 500;
+              font-size: 14px;
+            }
           }
         }
       }
     }
 
-    .active {
-      background-color: #1976d2;
-      color: Black;
-      font-weight: bold;
+    .sidebar-link {
+      &.active {
+        .sidebar-link-item {
+          .sidebar-item-button {
+            background-color: #1f0609;
+            color: #f9f3ef;
+            -webkit-transition: background-color 2s ease-out;
+            -moz-transition: background-color 2s ease-out;
+            -o-transition: background-color 2s ease-out;
+            transition: all 0.5s ease;
+
+            .sidebar-text,
+            .sidebar-item-icon {
+              color: #f9f3ef;
+            }
+          }
+        }
+      }
+    }
+
+    .sidebar-logo {
+      .sidebar-link-item {
+        .sidebar-item-button {
+          margin: 15px 7px;
+        }
+      }
     }
   }
 }
